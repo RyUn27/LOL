@@ -54,6 +54,137 @@
       align-items: center;
       justify-content: center;
     }
+    /* ===============================
+   TABLET
+================================ */
+@media (max-width: 1024px) {
+
+  .cart-container {
+    margin: 30px auto;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .cart-table img {
+    height: 75px;
+  }
+
+}
+
+
+/* ===============================
+   MOBILE
+================================ */
+@media (max-width: 768px) {
+
+  .cart-container {
+    margin: 20px auto;
+    padding: 0 14px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    margin: 20px 0 30px;
+  }
+
+  /* TABLE → SCROLLABLE */
+  .cart-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .cart-table th,
+  .cart-table td {
+    font-size: 0.9rem;
+    padding: 12px 10px;
+  }
+
+  .cart-table img {
+    height: 65px;
+  }
+
+  /* QTY CONTROLS BIGGER FOR TOUCH */
+  .qty-btn {
+    padding: 10px 16px;
+    font-size: 1.2rem;
+  }
+
+  .qty-display {
+    min-width: 36px;
+    font-size: 1rem;
+  }
+
+  .remove-btn {
+    padding: 10px 16px;
+    font-size: 0.85rem;
+  }
+
+  /* SUMMARY STACK */
+  .cart-summary {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    gap: 16px;
+    margin: 30px 0 50px;
+  }
+
+  .grand-total {
+    font-size: 1.4rem;
+  }
+
+  .checkout-btn {
+    width: 100%;
+    font-size: 1.05rem;
+    padding: 15px;
+  }
+
+  .empty-cart {
+    font-size: 1.1rem;
+    padding: 60px 20px;
+  }
+
+}
+
+
+/* ===============================
+   SMALL PHONES
+================================ */
+@media (max-width: 480px) {
+
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  .cart-table th,
+  .cart-table td {
+    font-size: 0.85rem;
+    padding: 10px 8px;
+  }
+
+  .grand-total {
+    font-size: 1.25rem;
+  }
+
+  .checkout-btn {
+    font-size: 1rem;
+  }
+
+  .cart-icon {
+    font-size: 1.4rem;
+  }
+
+  .cart-count {
+    width: 18px;
+    height: 18px;
+    font-size: 0.65rem;
+    top: -8px;
+    right: -10px;
+  }
+
+}
   </style>
 </head>
 <body>

@@ -19,6 +19,59 @@ button{padding:8px 14px;border:none;border-radius:8px;cursor:pointer;}
 .action-btn{margin:3px;}
 #preview{width:80px;display:block;margin-top:10px;}
 select{padding:6px;border-radius:6px;}
+@media (max-width: 768px){
+
+  .admin-container{
+    padding:20px 15px;
+  }
+
+  h2{
+    font-size:20px;
+    text-align:center;
+  }
+
+  /* Make table scroll horizontally */
+  table{
+    display:block;
+    overflow-x:auto;
+    white-space:nowrap;
+  }
+
+  th, td{
+    padding:10px;
+    font-size:13px;
+  }
+
+  /* Stack form inputs */
+  input, select{
+    width:100%;
+    margin:8px 0;
+  }
+
+  button{
+    width:100%;
+    margin-top:8px;
+  }
+
+  #preview{
+    width:70px;
+    margin:auto;
+  }
+}
+
+/* EXTRA SMALL DEVICES */
+@media (max-width: 480px){
+
+  th, td{
+    font-size:12px;
+    padding:8px;
+  }
+
+  button{
+    font-size:13px;
+    padding:9px;
+  }
+}
 </style>
 </head>
 

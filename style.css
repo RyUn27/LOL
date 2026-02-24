@@ -1001,3 +1001,174 @@ header {
 .cart-icon:hover{
   transform:scale(1.2);
 }
+
+/* ===============================
+   TABLET
+================================ */
+@media (max-width: 1024px) {
+
+  .members {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .member-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .album-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .detail-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .detail-left img {
+    width: 260px;
+  }
+
+  .nav-center {
+    gap: 25px;
+  }
+}
+
+
+/* ===============================
+   MOBILE
+================================ */
+@media (max-width: 768px) {
+
+  /* NAVBAR */
+  .navbar {
+    padding: 0 15px;
+  }
+
+  .nav-left {
+    left: 15px;
+  }
+
+  .nav-right {
+    right: 15px;
+  }
+
+  .nav-center {
+    display: none; /* hide desktop menu for mobile */
+  }
+
+  /* MEMBERS GRID */
+  .members {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .member-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .member img {
+    height: auto;
+  }
+
+  /* MEMBER DETAIL */
+  .detail-left img {
+    width: 220px;
+  }
+
+  .profile-table td:first-child {
+    width: 120px;
+  }
+
+  /* ALBUM CARD */
+  .album-row {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .album-cover {
+    width: 100%;
+    height: 250px;
+  }
+
+  .album-info {
+    width: 100%;
+    padding: 20px;
+  }
+
+  /* AUTH */
+  .auth-box {
+    width: 90%;
+    padding: 25px;
+  }
+
+  /* YOUTUBE */
+  .youtube-section iframe {
+    width: 100%;
+    height: 220px;
+  }
+
+  /* LYRICS */
+  .lyrics-box {
+    max-height: 250px;
+    font-size: 0.9rem;
+  }
+
+  /* FOOTER */
+  .footer {
+    flex-direction: column;
+    gap: 25px;
+    text-align: center;
+  }
+
+  .footer-right {
+    grid-template-columns: 1fr;
+    row-gap: 15px;
+    justify-items: center;
+  }
+
+  .cosmo-logo {
+    grid-row: auto;
+  }
+
+  .store-icons {
+    display: flex;
+    gap: 15px;
+  }
+
+}
+
+
+/* ===============================
+   SMALL PHONES
+================================ */
+@media (max-width: 480px) {
+
+  body {
+    font-size: 14px;
+  }
+
+  .signin-btn {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+
+  .dropdown {
+    min-width: 170px;
+  }
+
+  .album-title {
+    font-size: 0.95rem;
+  }
+
+  #game #answer-input {
+    font-size: 1.1rem;
+    padding: 12px;
+  }
+
+  #start-quiz {
+    width: 100%;
+    font-size: 1rem;
+  }
+
+}

@@ -124,6 +124,99 @@ body {
   align-items: center;
   justify-content: center;
 }
+/* ===============================
+   TABLET
+================================ */
+@media (max-width: 1024px) {
+
+  .pc-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 30px 18px;
+  }
+
+  .pc-card img {
+    height: 320px;
+  }
+
+}
+
+
+/* ===============================
+   MOBILE
+================================ */
+@media (max-width: 768px) {
+
+  .pc-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 25px 14px;
+  }
+
+  .pc-card {
+    padding: 14px;
+  }
+
+  .pc-card img {
+    height: auto;
+  }
+
+  .pc-card h3 {
+    font-size: 1.15rem;
+  }
+
+  .pc-card .price {
+    font-size: 1.3rem;
+  }
+
+  .pc-card button {
+    width: 100%;
+    padding: 12px;
+    font-size: 0.95rem;
+  }
+
+}
+
+
+/* ===============================
+   SMALL PHONES
+================================ */
+@media (max-width: 480px) {
+
+  .pc-grid {
+    padding: 20px 12px;
+  }
+
+  .pc-card {
+    padding: 12px;
+  }
+
+  .pc-card h3 {
+    font-size: 1.05rem;
+  }
+
+  .pc-card .member-num,
+  .pc-card .stock {
+    font-size: 0.85rem;
+  }
+
+  .pc-card .price {
+    font-size: 1.2rem;
+  }
+
+  .cart-icon {
+    font-size: 1.4rem;
+  }
+
+  .cart-count {
+    width: 18px;
+    height: 18px;
+    font-size: 0.65rem;
+    top: -8px;
+    right: -10px;
+  }
+
+}
 </style>
 </head>
 <body>

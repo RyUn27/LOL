@@ -107,6 +107,133 @@
       color:#ff4d4d;
       text-decoration:underline;
     }
+    /* ===============================
+   TABLET
+================================ */
+@media (max-width: 1024px) {
+
+  .orders-container {
+    margin: 30px auto;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .tab-btn {
+    padding: 10px 24px;
+    font-size: 1rem;
+  }
+
+}
+
+
+/* ===============================
+   MOBILE
+================================ */
+@media (max-width: 768px) {
+
+  .orders-container {
+    margin: 20px auto;
+    padding: 0 14px;
+  }
+
+  h1 {
+    font-size: 1.7rem;
+    margin: 20px 0 30px;
+  }
+
+  /* TABS */
+  .tabs {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .tab-btn {
+    width: 100%;
+    border-radius: 8px;
+  }
+
+  /* ORDER CARD */
+  .order-card {
+    padding: 16px;
+  }
+
+  .order-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .order-id {
+    font-size: 1.05rem;
+  }
+
+  .order-date {
+    font-size: 0.9rem;
+  }
+
+  .order-status {
+    font-size: 0.8rem;
+    padding: 5px 12px;
+  }
+
+  /* TABLE → SCROLLABLE */
+  .order-items {
+    overflow-x: auto;
+  }
+
+  .order-items table {
+    min-width: 600px;
+  }
+
+  .order-items th,
+  .order-items td {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  .order-total {
+    font-size: 1.15rem;
+    text-align: left;
+  }
+
+  .empty-orders {
+    font-size: 1.1rem;
+    padding: 60px 15px;
+  }
+
+}
+
+
+/* ===============================
+   SMALL PHONES
+================================ */
+@media (max-width: 480px) {
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .tab-btn {
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+
+  .order-card {
+    padding: 14px;
+  }
+
+  .order-items th,
+  .order-items td {
+    font-size: 0.85rem;
+  }
+
+  .order-total {
+    font-size: 1.05rem;
+  }
+
+}
   </style>
 </head>
 <body>
