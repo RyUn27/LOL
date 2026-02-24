@@ -1,0 +1,1003 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Times New Roman', Times, serif;
+  background-color: #000;
+  color: #fff;
+  line-height: 1.6;
+}
+
+header {
+  margin: 0;
+  padding: 0;
+}
+
+/* NAVBAR */
+.navbar {
+  height: 60px;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #111;
+  position: relative;
+}
+.nav-right {
+  position: absolute;
+  right: 40px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.signin-btn {
+  padding: 8px 16px;
+  background: transparent;
+  border: 1px solid white;
+  border-radius: 30px;
+  color: white;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: 0.3s;
+}
+
+.signin-btn:hover {
+  background: white;
+  color: black;
+}
+
+/* PROFILE IMAGE */
+.profile-img {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  cursor: pointer;
+  object-fit: cover;
+}
+
+/* IMPORTANT → parent must be relative */
+.nav-profile {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* DROPDOWN BOX */
+.dropdown {
+  position: absolute;
+  top: 48px;           /* adjust if your profile image height changes */
+  right: 0;
+  background: #1f1f1f;
+  border-radius: 12px;
+  min-width: 200px;    /* wider to fit longer links nicely */
+  display: none;
+  flex-direction: column;
+  padding: 8px 0;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+  z-index: 999;
+  border: 1px solid rgba(255, 77, 77, 0.15);
+}
+
+/* SHOW DROPDOWN */
+.dropdown.show {
+  display: flex;
+}
+
+/* USERNAME / HEADER */
+.dropdown-user {
+  padding: 14px 18px;
+  font-weight: 600;
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  margin: 0;
+  font-size: 1rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* LINKS */
+.dropdown a {
+  color: #e0e0e0;
+  padding: 12px 18px;
+  text-decoration: none;
+  font-size: 0.97rem;
+  transition: all 0.18s;
+  display: block;
+}
+
+.dropdown a:hover {
+  background: rgba(255, 77, 77, 0.12);
+  color: #ff4d4d;
+}
+
+/* Special links */
+#adminLink {
+  color: #4da6ff;
+  font-weight: 600;
+}
+
+#adminLink:hover {
+  background: rgba(77, 166, 255, 0.15);
+  color: #80bfff;
+}
+
+#myOrdersLink,
+#checkoutLink {
+  font-weight: 500;
+}
+
+#checkoutLink.disabled {
+  color: #777;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+/* Divider (optional) */
+.dropdown .divider {
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+  margin: 6px 0;
+}
+/* ── Auth Page ── */
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: #0f0f0f;
+  color: white;
+}
+
+.auth-box {
+  background: #1a1a1a;
+  padding: 40px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.auth-tabs {
+  display: flex;
+  margin-bottom: 28px;
+}
+
+.auth-tabs button {
+  flex: 1;
+  padding: 12px;
+  background: transparent;
+  border: none;
+  color: #aaa;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.auth-tabs button.active {
+  color: white;
+  border-bottom: 3px solid #fff;
+  font-weight: bold;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-form.hidden {
+  display: none;
+}
+
+.auth-form h2 {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.auth-form input {
+  padding: 14px 16px;
+  border: 1px solid #444;
+  border-radius: 8px;
+  background: #222;
+  color: white;
+  font-size: 1rem;
+}
+
+.auth-btn {
+  padding: 14px;
+  background: #0066ff;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.auth-btn:hover {
+  background: #0055dd;
+}
+/* LOGO LEFT */
+.nav-left {
+  position: absolute;
+  left: 40px;
+}
+
+.nav-left img {
+  height: 40px;
+  width: auto;
+  display: block;
+}
+
+/* CENTER MENU */
+.nav-center {
+  list-style: none;
+  display: flex;
+  gap: 50px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-center a {
+  position: relative;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.nav-center a.active {
+  color: #fff;
+}
+
+/* underline base */
+.nav-center a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  transform: translateX(-50%);
+  width: 0%;
+  height: 2px;
+  background: white;
+  transition: 0.3s ease;
+}
+
+/* hover animation */
+.nav-center a:hover::after {
+  width: 100%;
+}
+
+/* ACTIVE PAGE */
+.nav-center a.active::after {
+  width: 100%;
+}
+
+/* Group Section */
+.group-section {
+  text-align: center;
+  padding: 10px 10px;
+}
+
+.group-section img {
+  width: 80%;
+  max-width: 800px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(255,255,255,0.2);
+}
+
+/* MEMBERS SECTION */
+.members {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 35px;
+  max-width: 1400px;   /* give more space */
+  margin: 40px auto;
+  padding: 0 20px;     /* prevent edge sticking */
+}
+
+.member {
+  background: #111;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  min-width: 0;
+  color: white;
+  text-decoration: none;
+}
+
+.member img {
+  width: 100%;
+  height: 370px;
+  object-fit: cover;
+}
+
+.member {
+  transition: 0.3s ease;
+}
+
+.member:hover {
+  transform: translateY(-8px) scale(1.02);
+}
+
+.member h3 {
+  margin: 8px 0 2px;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.member-detail {
+  max-width: 1200px;
+  margin: 15px auto;
+  padding: 20px;
+}
+
+.detail-container {
+  display: flex;
+  gap: 50px;
+  align-items: flex-start;
+}
+
+.detail-left img {
+  width: 350px;
+  border-radius: 12px;
+}
+
+.detail-right {
+  flex: 1;
+}
+
+.profile-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.profile-table td {
+  padding: 10px;
+  border-bottom: 1px solid #333;
+}
+
+.profile-table td:first-child {
+  font-weight: bold;
+  width: 180px;
+  color: #aaa;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.member-detail button {
+  margin-top: 20px;
+  padding: 10px 18px;
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.member-detail button:hover {
+  background: white;
+  color: black;
+  transform: translateX(-5px);
+}
+
+.back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 25px;
+  padding: 10px 20px;
+  background: #111;
+  color: white;
+  border: 1px solid #fff;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.back-btn:hover {
+  background: white;
+  color: black;
+  transform: translateX(-6px);
+}
+.members-btn {
+  position: fixed;     /* stays at top when scrolling */
+  top: 20px;
+  left: 20px;
+
+  background: rgba(0,0,0,0.6);
+  color: #fff;
+  padding: 10px 18px;
+
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 1px;
+
+  transition: 0.3s;
+  z-index: 999;
+  position: static;
+}
+
+.member-header {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+
+/* Hover effect */
+.members-btn:hover {
+  background: #fff;
+  color: #000;
+}
+.member-section {
+  max-width: 1000px;
+  margin: 80px auto;
+  position: relative;   /* ⭐ IMPORTANT – makes button stay inside */
+}
+
+.member-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.member-card {
+  text-decoration: none;
+  color: white;
+}
+
+.member-card h3 {
+  color: #fff;
+  text-align: center;
+  margin-top: 10px;
+  text-decoration: none;   /* 🚫 no underline */
+}
+
+.member-card:hover h3 {
+  text-shadow: 0 0 8px white;
+}
+
+.member-card img {
+  width: 100%;
+  display: block;
+  border-radius: 12px;
+  transition: 0.4s;
+}
+
+/* Fade animation */
+.fade-out {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 0.6s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+/* ===============================
+   ALBUM GRID → 2 PER ROW
+================================ */
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  max-width: 1300px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+
+/* ===============================
+   ALBUM CARD
+================================ */
+.album-row {
+  display: flex;
+  height: 320px;
+  background: #0a0a0a;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.8);
+  transition: 0.45s ease;
+}
+
+.album-row:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 25px 60px rgba(138, 43, 226, 0.35);
+}
+
+/* ===============================
+   COVER IMAGE
+================================ */
+.album-cover {
+  width: 45%;
+  overflow: hidden;
+  background: #000;
+}
+
+.album-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.6s ease;
+}
+
+.album-row:hover .album-cover img {
+  transform: scale(1.08);
+}
+
+/* ===============================
+   INFO PANEL
+================================ */
+.album-info {
+  width: 55%;
+  padding: 25px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(to bottom, #0d0d0d, #050505);
+  color: #fff;
+  transition: 0.4s ease;
+}
+
+.album-row:hover .album-info {
+  background: linear-gradient(to bottom, #14001f, #05000f);
+}
+
+/* ===============================
+   TITLE
+================================ */
+.album-title {
+  text-align: center;
+  font-size: 1.05rem;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(138,43,226,0.6);
+}
+
+/* ===============================
+   TRACKLIST (ALBUM CARD)
+================================ */
+.album-grid .tracklist {
+  list-style: decimal;
+  padding-left: 18px;
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.album-grid .tracklist li {
+  padding: 2px 0;
+  border: none;
+  transition: 0.25s ease;
+}
+
+/* hover effect */
+.album-grid .tracklist li:hover {
+  color: #c084ff;
+  transform: translateX(6px);
+  text-shadow: 0 0 8px rgba(192,132,255,0.5);
+}
+
+/* remove ALL link underline problems */
+.album-grid .tracklist a {
+  text-decoration: none !important;
+  border: none !important;
+  color: #fff;
+}
+
+/* ===============================
+   DETAIL PAGE LAYOUT
+================================ */
+.album-detail-container {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 40px;
+}
+
+/* BIG COVER */
+.album-cover-large {
+  flex: 0 0 280px;
+  max-width: 280px;
+}
+
+.album-cover-large img {
+  width: 100%;
+  margin-top: 125px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+/* DETAIL TRACKLIST (WITH DIVIDERS) */
+.album-detail .tracklist li {
+  padding: 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.album-detail .tracklist li:last-child {
+  border-bottom: none;
+}
+
+/* ===============================
+   YOUTUBE
+================================ */
+.youtube-section iframe {
+  width: 80%;
+  max-width: 700px;
+  height: 395px; /* keeps 16:9 ratio */
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+  display: block;
+  margin: 0 auto; /* center */
+}
+
+#start-quiz {
+  background: linear-gradient(135deg, #ffffff, #dcdcdc);
+  color: #000;
+  border: none;
+  padding: 14px 40px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+
+  border-radius: 40px;
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(255,255,255,0.15);
+}
+
+/* Hover */
+#start-quiz:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 30px rgba(255,255,255,0.35);
+}
+
+/* Click effect */
+#start-quiz:active {
+  transform: scale(0.95);
+}
+
+#game {
+  padding: 30px 15px;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+  min-height: 80vh;
+}
+
+#game #quiz-stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin: 25px 0;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #ddd;
+  flex-wrap: wrap;
+}
+
+#game #quiz-image-container,
+#game .input-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 25px 0;
+}
+
+#game #member-image {
+  max-width: 90%;
+  max-height: 300px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  object-fit: contain;
+}
+
+#game #answer-input {
+  width: 100%;
+  max-width: 550px;
+  padding: 16px;
+  font-size: 1.4rem;
+  border: 2px solid #444;
+  border-radius: 12px;
+  background: #111;
+  color: white;
+  text-align: center;
+}
+
+.breadcrumb {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 0 20px;
+  font-size: 14px;
+  color: #aaa;
+}
+
+.breadcrumb a {
+  color: #aaa;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: #fff;
+}
+
+.breadcrumb .current {
+  color: #fff;
+}
+
+.breadcrumb span {
+  margin: 0 8px;
+}
+
+.overview {
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 0 20px;
+  color: #ddd;
+  line-height: 1.8;
+}
+
+.overview h1 {
+  text-align: center;
+  color: #fff;
+  margin-bottom: 40px;
+}
+
+.overview h2 {
+  color: #fff;
+  margin-top: 40px;
+}
+
+.overview h3 {
+  color: #c084ff;
+  margin-top: 25px;
+}
+
+.overview ul {
+  padding-left: 20px;
+}
+
+.auth-container{
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#000;
+  font-family:Arial, sans-serif;
+}
+
+.auth-box{
+  width:380px;
+  background:#111;
+  padding:40px;
+  border-radius:14px;
+  box-shadow:0 0 25px rgba(255,255,255,0.08);
+  text-align:center;
+}
+
+.auth-tabs{
+  display:flex;
+  margin-bottom:25px;
+}
+
+.auth-tabs button{
+  flex:1;
+  padding:12px;
+  border:none;
+  background:none;
+  color:#888;
+  font-size:1rem;
+  cursor:pointer;
+  border-bottom:2px solid transparent;
+}
+
+.auth-tabs .active{
+  color:white;
+  border-bottom:2px solid white;
+}
+
+.auth-form{
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
+
+.auth-form input{
+  padding:12px;
+  border:none;
+  border-radius:8px;
+  background:#1a1a1a;
+  color:white;
+}
+
+.auth-btn{
+  margin-top:10px;
+  padding:12px;
+  border:none;
+  border-radius:8px;
+  background:white;
+  color:black;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.auth-btn:hover{
+  background:#ddd;
+}
+
+.hidden{
+  display:none;
+}
+
+.footer{
+  background:#111;
+  color:white;
+  padding:40px 60px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+}
+
+/* LEFT */
+.footer-left{
+  display:flex;
+  gap:18px;
+}
+
+.footer-left img{
+  width:22px;
+  filter:invert(1);
+  transition:0.3s;
+}
+
+.footer-left img:hover{
+  transform:scale(1.2);
+}
+
+/* CENTER */
+.footer-center{
+  text-align:center;
+}
+
+.footer-center p{
+  margin-bottom:12px; 
+}
+
+.footer-links{
+  display:flex;
+  gap:25px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.footer-links a{
+  color:white;
+  text-decoration:none;
+  font-size:0.9rem;
+  opacity:0.8;
+}
+
+.footer-links a:hover{
+  opacity:1;
+}
+
+.footer-right{
+  display:grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto auto;
+  align-items:center;
+  column-gap:16px;
+}
+
+/* COSMO LOGO → takes 2 rows */
+.cosmo-logo{
+  grid-row: span 2;
+}
+
+.cosmo-logo img{
+  width:120px;
+  display:block;
+}
+
+/* STORE ICONS */
+.store-icons{
+  display:contents; /* allows direct grid placement */
+}
+
+.store-icons a:nth-child(1){
+  grid-column:2;
+  grid-row:1;
+}
+
+.store-icons a:nth-child(2){
+  grid-column:2;
+  grid-row:2;
+}
+
+.store-icons img{
+  height:40px;
+  transition:0.3s;
+}
+
+.store-icons img:hover{
+  transform:scale(1.1);
+}
+
+/* LYRICS SECTION */
+.lyrics-section{
+  margin-top:50px;
+  color:white;
+  text-align:center;
+}
+
+.lyrics-title{
+  font-size:1.6rem;
+  margin-bottom:20px;
+  text-shadow:0 0 10px rgba(138,43,226,0.6);
+}
+
+/* LYRICS BOX */
+.lyrics-box{
+  max-width:800px;
+  margin:0 auto;
+  padding:25px;
+  background:linear-gradient(to bottom,#0d0d0d,#050505);
+  border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.6);
+
+  max-height:300px;     /* scrollable */
+  overflow-y:auto;
+  line-height:1.8;
+  font-size:0.95rem;
+  text-align:left;
+}
+
+/* scrollbar styling */
+.lyrics-box::-webkit-scrollbar{
+  width:6px;
+}
+
+.lyrics-box::-webkit-scrollbar-thumb{
+  background:#888;
+  border-radius:10px;
+}
+
+.audio-player{
+  margin-top:25px;
+  text-align:center;
+}
+/* make player fit your layout */
+.audio-player audio{
+  width:100%;
+  max-width:500px;
+  filter:invert(1) hue-rotate(180deg); /* dark theme trick */
+}
+
+.cart-icon{
+  font-size:22px;
+  margin-right:15px;
+  text-decoration:none;
+  position:relative;
+}
+
+.cart-icon:hover{
+  transform:scale(1.2);
+}

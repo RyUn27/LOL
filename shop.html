@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/webp" href="images/tripleS_icon.webp">
+<title>tripleS Shop</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+body {
+  background: #000;
+  color: white;
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+.pc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 24px;
+  padding: 40px 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.pc-card {
+  background: #111;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+.pc-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(255, 77, 77, 0.25);
+}
+
+.pc-card img {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.pc-card h3 {
+  margin: 0 0 6px;
+  font-size: 1.28rem;
+  color: #eee;
+}
+
+.pc-card .member-num {
+  color: #aaa;
+  font-size: 0.92rem;
+  margin-bottom: 8px;
+}
+
+.pc-card .price {
+  font-size: 1.45rem;
+  font-weight: bold;
+  color: #ff4d4d;
+  margin: 10px 0 6px;
+}
+
+.pc-card .stock {
+  color: #bbb;
+  font-size: 0.98rem;
+  margin-bottom: 14px;
+}
+
+.pc-card button {
+  padding: 10px 22px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.pc-card button.add-btn {
+  background: #ff4d4d;
+  color: white;
+}
+
+.pc-card button.add-btn:hover:not(:disabled) {
+  background: #e63939;
+  transform: translateY(-1px);
+}
+
+.pc-card button:disabled {
+  background: #444;
+  color: #888;
+  cursor: not-allowed;
+}
+
+.empty-message {
+  text-align: center;
+  padding: 100px 20px;
+  color: #777;
+  font-size: 1.4rem;
+}
+
+.cart-icon {
+  position: relative;
+  font-size: 1.6rem;
+  text-decoration: none;
+  color: white;
+}
+
+.cart-count {
+  position: absolute;
+  top: -10px;
+  right: -12px;
+  background: #ff4d4d;
+  color: white;
+  font-size: 0.75rem;
+  font-weight: bold;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<header>
+    <nav class="navbar">
+    <div class="nav-left">
+      <a href="index.html">
+        <img src="images/tripleS_logo.png" alt="tripleS logo">
+      </a>
+    </div>
+
+    <ul class="nav-center">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="members.html">Members</a></li>
+      <li><a href="albums.html">Albums</a></li>
+      <li><a href="game.html">Game</a></li>
+      <li><a href="overview.html">Overview</a></li>
+      <li id="shopNav" style="display:none;">
+          <a href="shop.html">Shop</a>
+      </li>
+    <li id="adminNav" style="display:none;"><a href="admin.html">Admin</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <!-- 🛒 CART ICON -->
+<a href="cart.html" id="cartIcon" class="cart-icon" style="display:none;">
+  🛒
+</a>
+  <a href="login.html" id="loginBtn" class="signin-btn">Sign in/up</a>
+
+  <div class="nav-profile" id="profileMenu" style="display: none;">
+    <img src="images/Profile_avatar.png" class="profile-img" alt="Profile" onclick="toggleDropdown()">
+    <div class="dropdown" id="dropdown">
+
+  <p class="dropdown-user" id="dropdownUsername"></p>
+
+  <!-- ⭐ ADMIN BUTTON -->
+  <a href="admin.html" id="adminLink" style="display:none;">Admin Dashboard</a>
+<!-- My Orders -->
+      <a href="order.html" id="myOrdersLink">My Orders</a>
+
+      <!-- Checkout (disabled if cart empty) -->
+      <a href="checkout.html" id="checkoutLink">Checkout</a>
+  <a href="#" onclick="logout()">Logout</a>
+
+</div>
+  </div>
+</div>
+  </nav>
+
+  </header>
+
+    <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span> / </span>
+        <span class="current">Shop</span>
+    </div>
+
+
+
+
+<h2 style="text-align:center; margin:50px 0 30px; font-size:2.2rem;">Photocards Shop</h2>
+
+<div class="pc-grid" id="shopContainer"></div>
+
+<script>
+const currentUser = JSON.parse(localStorage.getItem("tripleSCurrentUser"));
+
+if (!currentUser) {
+  alert("Please login first");
+  location.href = "login.html";
+}
+
+// Elements
+const shopNav     = document.getElementById("shopNav");
+const adminNav    = document.getElementById("adminNav");
+const loginBtn    = document.getElementById("loginBtn");
+const profileMenu = document.getElementById("profileMenu");
+const dropdown    = document.getElementById("dropdown");
+const dropdownUsername = document.getElementById("dropdownUsername");
+const adminLink   = document.getElementById("adminLink");
+const cartIcon    = document.getElementById("cartIcon");
+
+// Navigation + cart count
+function updateNav() {
+  loginBtn.style.display = "none";
+  profileMenu.style.display = "block";
+  dropdownUsername.textContent = currentUser.username;
+  shopNav.style.display = "block";
+
+  if (currentUser.role === "admin") {
+    adminLink.style.display = "block";
+    adminNav.style.display = "block";
+  }
+
+  updateCartCount();
+}
+
+function toggleDropdown() {
+  dropdown.classList.toggle("show");
+}
+
+function logout() {
+  localStorage.removeItem("tripleSCurrentUser");
+  location.href = "index.html";
+}
+
+function updateCartCount() {
+  let cart = JSON.parse(localStorage.getItem("tripleSCart")) || [];
+  let userCart = cart.filter(item => item.user === currentUser.username);
+  let totalQty = userCart.reduce((sum, item) => sum + item.qty, 0);
+
+  cartIcon.style.display = "block";
+  cartIcon.innerHTML = `🛒${totalQty > 0 ? `<span class="cart-count">${totalQty}</span>` : ''}`;
+}
+
+// Load photocards
+function loadPhotocards() {
+  const container = document.getElementById("shopContainer");
+  let photocards = JSON.parse(localStorage.getItem("tripleSPhotocards")) || [];
+
+  container.innerHTML = "";
+
+  if (photocards.length === 0) {
+    container.innerHTML = `<p class="empty-message">No photocards available yet...</p>`;
+    return;
+  }
+
+  photocards.forEach((pc, index) => {
+    const qtyLeft = Number(pc.qty) || 0;
+
+    container.innerHTML += `
+      <div class="pc-card">
+        <img src="${pc.image}" alt="${pc.memberName || 'Photocard'}">
+        <h3>${pc.memberName || 'Unknown'}</h3>
+        <div class="member-num">S${pc.memberNumber || '?'}</div>
+        <div class="price">฿${Number(pc.price || 0).toLocaleString("th-TH")}</div>
+        <div class="stock">Stock: ${qtyLeft}</div>
+        <button class="add-btn"
+          onclick="addToCart(${index})"
+          ${qtyLeft <= 0 ? "disabled" : ""}>
+          ${qtyLeft <= 0 ? "Out of Stock" : "Add to Cart"}
+        </button>
+      </div>
+    `;
+  });
+}
+
+// Add to cart – now includes memberNumber
+function addToCart(index) {
+  let photocards = JSON.parse(localStorage.getItem("tripleSPhotocards")) || [];
+  let cart = JSON.parse(localStorage.getItem("tripleSCart")) || [];
+
+  const product = photocards[index];
+  if (!product || Number(product.qty) <= 0) {
+    alert("Sorry, this photocard is out of stock.");
+    return;
+  }
+
+  const identifier = `${product.memberName || ''}-${product.memberNumber || ''}`;
+
+  let existing = cart.find(item =>
+    item.user === currentUser.username &&
+    item.productIdentifier === identifier
+  );
+
+  if (existing) {
+    if (existing.qty >= product.qty) {
+      alert(`Only ${product.qty} left in stock!`);
+      return;
+    }
+    existing.qty += 1;
+  } else {
+    cart.push({
+      user: currentUser.username,
+      productIdentifier: identifier,
+      name: product.memberName || 'Photocard',
+      memberNumber: product.memberNumber || "?",   // crucial for stock restore
+      price: Number(product.price || 0),
+      img: product.image || '',
+      qty: 1
+    });
+  }
+
+  // Decrease stock
+  product.qty = Number(product.qty) - 1;
+
+  localStorage.setItem("tripleSPhotocards", JSON.stringify(photocards));
+  localStorage.setItem("tripleSCart", JSON.stringify(cart));
+
+  alert("Added to cart ✓");
+  updateCartCount();
+  loadPhotocards();
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  updateNav();
+  loadPhotocards();
+});
+</script>
+<script src="script.js"></script>
+</body>
+</html>

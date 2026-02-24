@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/webp" href="images/tripleS_icon.webp">
+  <title>tripleS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+      <div class="nav-left">
+        <a href="index.html">
+          <img src="images/tripleS_logo.png" alt="tripleS logo">
+        </a>
+      </div>
+      
+      <ul class="nav-center">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="members.html">Members</a></li>
+        <li><a href="albums.html">Albums</a></li>
+        <li><a href="game.html">Game</a></li>
+        <li><a href="overview.html">Overview</a></li>
+        <li id="shopNav" style="display:none;">
+          <a href="shop.html">Shop</a>
+        </li>
+      </ul>
+
+      <div class="nav-right">
+        <!-- 🛒 CART ICON -->
+<a href="cart.html" id="cartIcon" class="cart-icon" style="display:none;">
+  🛒
+</a>
+  <a href="login.html" id="loginBtn" class="signin-btn">Sign in/up</a>
+
+  <div class="nav-profile" id="profileMenu" style="display: none;">
+    <img src="images/Profile_avatar.png" class="profile-img" alt="Profile" onclick="toggleDropdown()">
+    <div class="dropdown" id="dropdown">
+
+  <p class="dropdown-user" id="dropdownUsername"></p>
+  <!-- ⭐ ADMIN BUTTON -->
+  <a href="admin.html" id="adminLink" style="display:none;">Admin Dashboard</a>
+  <!-- My Orders -->
+      <a href="order.html" id="myOrdersLink">My Orders</a>
+
+      <!-- Checkout (disabled if cart empty) -->
+      <a href="checkout.html" id="checkoutLink">Checkout</a>
+
+  <a href="#" onclick="logout()">Logout</a>
+
+</div>
+  </div>
+</div>
+
+    </nav>
+  </header>
+
+  <div class="breadcrumb">
+    <a href="#" onclick="showSection('home')">Home</a>
+    <span id="breadcrumb-path"></span>
+  </div>
+
+  <!-- Home Section -->
+  <section class="group-section" id="home">
+    <img src="images/tripleS_group_1.jpg" alt="tripleS Group">
+    <h3>The idol of all Possibilities</h3>
+    <br>
+    <hr>
+
+    <section class="member-section">
+      <div class="member-header">
+        <a href="members.html" class="members-btn">Members</a>
+      </div>
+
+      <div class="member-grid" id="memberGrid"></div>
+    </section>
+  </section>
+
+<footer class="footer">
+
+  <!-- LEFT : SOCIAL -->
+  <div class="footer-left">
+    <a href="https://www.youtube.com/@triplescosmos" target="_blank"><img src="images/youtube-icon-lg.png"></a>
+    <a href="https://www.instagram.com/triplescosmos/" target="_blank"><img src="images/instagram.avif"></a>
+    <a href="https://x.com/triplescosmos" target="_blank"><img src="images/x-logo-icon.avif"></a>
+    <a href="https://www.facebook.com/triplescosmos.archive" target="_blank"><img src="images/facebook-app-icon.avif"></a>
+    <a href="https://discord.gg/triplescosmos" target="_blank"><img src="images/discord.png"></a>
+  </div>
+
+
+  <!-- CENTER -->
+  <div class="footer-center">
+    <p>© 2026 tripleS | Inspired by Kpop Wiki</p>
+
+    <div class="footer-links">
+      <a href="https://shop.cosmo.fans/" target="_blank">Cosmo Web Shop</a>
+      <a href="https://www.triplescosmos.com/" target="_blank">tripleS Website</a>
+      <a href="https://www.mod-haus.com/" target="_blank">Modhaus Website</a>
+    </div>
+  </div>
+
+
+  <!-- RIGHT -->
+  <div class="footer-right">
+
+  <a class="cosmo-logo">
+    <img src="images/Cosmo_app_logo.webp">
+  </a>
+
+<div class="store-icons">
+    <a href="https://play.google.com/store/apps/details?id=com.modhaus.cosmo"><img src="images/google-play.webp"></a>
+    <a href="https://apps.apple.com/kr/app/cosmo-the-origin/id1617337069"><img src="images/apple-app-store.jpg"></a>
+  </div>
+
+</div>
+
+</footer>
+  <script>
+  const members = [
+  { name: "SeoYeon", img: "images/seoyeon.webp", link: "member_details.html#seoyeon" },
+  { name: "HyeRin", img: "images/hyerin.webp", link: "member_details.html#hyerin" },
+  { name: "JiWoo", img: "images/jiwoo.webp", link: "member_details.html#jiwoo" },
+  { name: "ChaeWon", img: "images/chaewon.webp", link: "member_details.html#chaewon" },
+  { name: "YooYeon", img: "images/yooyeon.webp", link: "member_details.html#yooyeon" },
+  { name: "SooMin", img: "images/soomin.webp", link: "member_details.html#soomin" },
+  { name: "NaKyoung", img: "images/nakyoung.webp", link: "member_details.html#nakyoung" },
+  { name: "YuBin", img: "images/yubin.webp", link: "member_details.html#yubin" },
+  { name: "Kaede", img: "images/kaede.webp", link: "member_details.html#kaede" },
+  { name: "DaHyun", img: "images/dahyun.webp", link: "member_details.html#dahyun" },
+  { name: "Kotone", img: "images/kotone.webp", link: "member_details.html#kotone" },
+  { name: "YeonJi", img: "images/yeonji.webp", link: "member_details.html#yeonji" },
+  { name: "Nien", img: "images/nien.webp", link: "member_details.html#nien" },
+  { name: "SoHyun", img: "images/sohyun.webp", link: "member_details.html#sohyun" },
+  { name: "SeoAh", img: "images/seoah.webp", link: "member_details.html#seoah" },
+  { name: "JiYeon", img: "images/jiyeon.webp", link: "member_details.html#jiyeon" },
+  { name: "Xinyu", img: "images/xinyu.webp", link: "member_details.html#xinyu" },
+  { name: "Mayu", img: "images/mayu.webp", link: "member_details.html#mayu" },
+  { name: "Lynn", img: "images/lynn.webp", link: "member_details.html#lynn" },
+  { name: "JooBin", img: "images/joobin.webp", link: "member_details.html#joobin" },
+  { name: "HaYeon", img: "images/hayeon.webp", link: "member_details.html#hayeon" },
+  { name: "ShiOn", img: "images/shion.webp", link: "member_details.html#shion" },
+  { name: "ChaeYeon", img: "images/chaeyeon.webp", link: "member_details.html#chaeyeon" },
+  { name: "DaHyun", img: "images/dahyun.webp", link: "member_details.html#dahyun" }
+];
+
+  const grid = document.getElementById("memberGrid");
+
+  let currentMembers = [];
+
+  // 🔹 Get random member not already shown
+  function getRandomMember() {
+    let available = members.filter(m => !currentMembers.includes(m));
+    return available[Math.floor(Math.random() * available.length)];
+  }
+
+  // 🔹 Create card
+function createCard(member) {
+  const a = document.createElement("a");
+  a.href = member.link;
+  a.className = "member-card fade-in";
+
+  a.innerHTML = `
+    <img src="${member.img}" alt="${member.name}">
+    <h3>${member.name}</h3>
+  `;
+
+  return a;
+}
+
+  // 🔹 Initial 4 members
+  function loadInitial() {
+    for (let i = 0; i < 4; i++) {
+      let random = getRandomMember();
+      currentMembers.push(random);
+      grid.appendChild(createCard(random));
+    }
+  }
+
+  // 🔹 Replace random card
+  function replaceRandomCard() {
+    const cards = document.querySelectorAll(".member-card");
+    const randomIndex = Math.floor(Math.random() * cards.length);
+    const oldCard = cards[randomIndex];
+
+    oldCard.classList.add("fade-out");
+
+    setTimeout(() => {
+      const newMember = getRandomMember();
+
+      currentMembers[randomIndex] = newMember;
+
+      const newCard = createCard(newMember);
+      grid.replaceChild(newCard, oldCard);
+    }, 400);
+  }
+
+  // 🔹 Auto change every 3 seconds
+  setInterval(replaceRandomCard, 5000);
+
+  loadInitial();
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>

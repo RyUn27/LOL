@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/webp" href="images/tripleS_icon.webp">
+  <title>tripleS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+    <div class="nav-left">
+      <a href="index.html">
+        <img src="images/tripleS_logo.png" alt="tripleS logo">
+      </a>
+    </div>
+
+    <ul class="nav-center">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="members.html">Members</a></li>
+      <li><a href="albums.html">Albums</a></li>
+      <li><a href="game.html">Game</a></li>
+      <li><a href="overview.html">Overview</a></li>
+      <li id="shopNav" style="display:none;">
+          <a href="shop.html">Shop</a>
+      </li>
+    </ul>
+
+    <div class="nav-right">
+      <!-- 🛒 CART ICON -->
+<a href="cart.html" id="cartIcon" class="cart-icon" style="display:none;">
+  🛒
+</a>
+  <a href="login.html" id="loginBtn" class="signin-btn">Sign in/up</a>
+
+  <div class="nav-profile" id="profileMenu" style="display: none;">
+    <img src="images/Profile_avatar.png" class="profile-img" alt="Profile" onclick="toggleDropdown()">
+    <div class="dropdown" id="dropdown">
+
+  <p class="dropdown-user" id="dropdownUsername"></p>
+
+  <!-- ⭐ ADMIN BUTTON -->
+  <a href="admin.html" id="adminLink" style="display:none;">Admin Dashboard</a>
+<!-- My Orders -->
+      <a href="order.html" id="myOrdersLink">My Orders</a>
+
+      <!-- Checkout (disabled if cart empty) -->
+      <a href="checkout.html" id="checkoutLink">Checkout</a>
+  <a href="#" onclick="logout()">Logout</a>
+
+</div>
+  </div>
+</div>
+  </nav>
+
+  </header>
+
+  <div class="breadcrumb">
+    <a href="index.html">Home</a>
+    <span>/</span>
+    <span class="current">Albums</span>
+  </div>
+
+ <section id="albums"
+style="padding: -10px 20px; min-height: 80vh; max-width: 1300px; margin: 0 auto; background: #000;">
+
+<h1 style="text-align: center; color: #fff; margin-bottom: 5px; font-size: 2.8rem;">
+  tripleS Albums
+</h1>
+
+<div class="album-grid">
+
+  <!-- ASSEMBLE25 -->
+  <a href="album_details.html#assemble25" class="album-card">
+    <div class="album-row">
+      <div class="album-cover">
+        <img src="images/Assemble25.webp" alt="ASSEMBLE25">
+      </div>
+
+      <div class="album-info">
+        <h2 class="album-title">ASSEMBLE25</h2>
+        <ol class="tracklist">
+          <li>@% (Alpha Percent)</li>
+          <li>깨어 (Are You Alive)</li>
+          <li>추리소설 (Detective Soseol)</li>
+          <li>이제 우리 불꽃놀이 (Firework Diary)</li>
+          <li>Love Child</li>
+          <li>Persona</li>
+          <li>Too Hot</li>
+          <li>Diablo</li>
+          <li>Friend Zone</li>
+          <li>Love2Love</li>
+        </ol>
+      </div>
+    </div>
+  </a>
+
+  <!-- ASSEMBLE24 -->
+  <a href="album_details.html#assemble24" class="album-card">
+    <div class="album-row">
+      <div class="album-cover">
+        <img src="images/ASSEMBLE24.webp" alt="ASSEMBLE24">
+      </div>
+
+      <div class="album-info">
+        <h2 class="album-title">ASSEMBLE24</h2>
+        <ol class="tracklist">
+          <li>S</li>
+          <li>Girls Never Die</li>
+          <li>가시권 (Heart Raider)</li>
+          <li>Midnight Flower</li>
+          <li>White Soul Sneakers</li>
+          <li>치유 (Chiyu)</li>
+          <li>24</li>
+          <li>이면의 이면 (Beyond the Beyond)</li>
+          <li>Non Scale</li>
+          <li>Dimension</li>
+        </ol>
+      </div>
+    </div>
+  </a>
+
+</div>
+
+</section>
+
+
+<!-- Footer -->
+<footer class="footer">
+
+  <!-- LEFT : SOCIAL -->
+  <div class="footer-left">
+    <a href="https://www.youtube.com/@triplescosmos" target="_blank"><img src="images/youtube-icon-lg.png"></a>
+    <a href="https://www.instagram.com/triplescosmos/" target="_blank"><img src="images/instagram.avif"></a>
+    <a href="https://x.com/triplescosmos" target="_blank"><img src="images/x-logo-icon.avif"></a>
+    <a href="https://www.facebook.com/triplescosmos.archive" target="_blank"><img src="images/facebook-app-icon.avif"></a>
+    <a href="https://discord.gg/triplescosmos" target="_blank"><img src="images/discord.png"></a>
+  </div>
+
+
+  <!-- CENTER -->
+  <div class="footer-center">
+    <p>© 2026 tripleS | Inspired by Kpop Wiki</p>
+
+    <div class="footer-links">
+      <a href="https://shop.cosmo.fans/" target="_blank">Cosmo Web Shop</a>
+      <a href="https://www.triplescosmos.com/" target="_blank">tripleS Website</a>
+      <a href="https://www.mod-haus.com/" target="_blank">Modhaus Website</a>
+    </div>
+  </div>
+
+
+  <!-- RIGHT -->
+  <div class="footer-right">
+
+  <a class="cosmo-logo">
+    <img src="images/Cosmo_app_logo.webp">
+  </a>
+
+<div class="store-icons">
+    <a href="https://play.google.com/store/apps/details?id=com.modhaus.cosmo"><img src="images/google-play.webp"></a>
+    <a href="https://apps.apple.com/kr/app/cosmo-the-origin/id1617337069"><img src="images/apple-app-store.jpg"></a>
+  </div>
+
+</div>
+
+</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+

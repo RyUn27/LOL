@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/webp" href="images/tripleS_icon.webp">
+  <title>tripleS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+    <div class="nav-left">
+      <a href="index.html">
+        <img src="images/tripleS_logo.png" alt="tripleS logo">
+      </a>
+    </div>
+
+    <ul class="nav-center">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="members.html">Members</a></li>
+      <li><a href="albums.html">Albums</a></li>
+      <li><a href="game.html">Game</a></li>
+      <li><a href="overview.html">Overview</a></li>
+      <li id="shopNav" style="display:none;">
+          <a href="shop.html">Shop</a>
+      </li>
+    </ul>
+
+    <div class="nav-right">
+      <!-- 🛒 CART ICON -->
+<a href="cart.html" id="cartIcon" class="cart-icon" style="display:none;">
+  🛒
+</a>
+  <a href="login.html" id="loginBtn" class="signin-btn">Sign in/up</a>
+
+  <div class="nav-profile" id="profileMenu" style="display: none;">
+    <img src="images/Profile_avatar.png" class="profile-img" alt="Profile" onclick="toggleDropdown()">
+    <div class="dropdown" id="dropdown">
+
+  <p class="dropdown-user" id="dropdownUsername"></p>
+
+  <!-- ⭐ ADMIN BUTTON -->
+  <a href="admin.html" id="adminLink" style="display:none;">Admin Dashboard</a>
+<!-- My Orders -->
+      <a href="order.html" id="myOrdersLink">My Orders</a>
+
+      <!-- Checkout (disabled if cart empty) -->
+      <a href="checkout.html" id="checkoutLink">Checkout</a>
+  <a href="#" onclick="logout()">Logout</a>
+
+</div>
+  </div>
+</div>
+  </nav>
+
+  </header>
+
+    <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span> / </span>
+        <span class="current">Members</span>
+    </div>
+
+    <section class="members">
+
+  <a href="member_details.html#seoyeon" class="member">
+    <img src="images/SeoYeon.webp"><h3>S1 SeoYeon</h3>
+  </a>
+
+  <a href="member_details.html#hyerin" class="member">
+    <img src="images/HyeRin.webp"><h3>S2 HyeRin</h3>
+  </a>
+
+  <a href="member_details.html#jiwoo" class="member">
+    <img src="images/JiWoo.webp"><h3>S3 JiWoo</h3>
+  </a>
+
+  <a href="member_details.html#chaeyeon" class="member">
+    <img src="images/ChaeYeon.webp"><h3>S4 ChaeYeon</h3>
+  </a>
+
+  <a href="member_details.html#yooyeon" class="member">
+    <img src="images/YooYeon.webp"><h3>S5 YooYeon</h3>
+  </a>
+
+  <a href="member_details.html#soomin" class="member">
+    <img src="images/SooMin.webp"><h3>S6 SooMin</h3>
+  </a>
+
+  <a href="member_details.html#nakyoung" class="member">
+    <img src="images/NakYoung.webp"><h3>S7 NaKyoung</h3>
+  </a>
+
+  <a href="member_details.html#yubin" class="member">
+    <img src="images/YuBin.webp"><h3>S8 YuBin</h3>
+  </a>
+
+  <a href="member_details.html#kaede" class="member">
+    <img src="images/Kaede.webp"><h3>S9 Kaede</h3>
+  </a>
+
+  <a href="member_details.html#dahyun" class="member">
+    <img src="images/DaHyun.webp"><h3>S10 DaHyun</h3>
+  </a>
+
+  <a href="member_details.html#kotone" class="member">
+    <img src="images/Kotone.webp"><h3>S11 Kotone</h3>
+  </a>
+
+  <a href="member_details.html#yeonji" class="member">
+    <img src="images/YeonJi.webp"><h3>S12 YeonJi</h3>
+  </a>
+
+  <a href="member_details.html#nien" class="member">
+    <img src="images/Nien.webp"><h3>S13 Nien</h3>
+  </a>
+
+  <a href="member_details.html#sohyun" class="member">
+    <img src="images/SoHyun.webp"><h3>S14 SoHyun</h3>
+  </a>
+
+  <a href="member_details.html#xinyu" class="member">
+    <img src="images/XinYu.webp"><h3>S15 XinYu</h3>
+  </a>
+
+  <a href="member_details.html#mayu" class="member">
+    <img src="images/Mayu.webp"><h3>S16 Mayu</h3>
+  </a>
+
+  <a href="member_details.html#lynn" class="member">
+    <img src="images/Lynn.webp"><h3>S17 Lynn</h3>
+  </a>
+
+  <a href="member_details.html#joobin" class="member">
+    <img src="images/JooBin.webp"><h3>S18 JooBin</h3>
+  </a>
+
+  <a href="member_details.html#hayeon" class="member">
+    <img src="images/HaYeon.webp"><h3>S19 HaYeon</h3>
+  </a>
+
+  <a href="member_details.html#shion" class="member">
+    <img src="images/Shion.webp"><h3>S20 ShiOn</h3>
+  </a>
+
+  <a href="member_details.html#chaewon" class="member">
+    <img src="images/ChaeWon.webp"><h3>S21 ChaeWon</h3>
+  </a>
+
+  <a href="member_details.html#sullin" class="member">
+    <img src="images/Sullin.webp"><h3>S22 Sullin</h3>
+  </a>
+
+  <a href="member_details.html#seoah" class="member">
+    <img src="images/SeoAh.webp"><h3>S23 SeoAh</h3>
+  </a>
+
+  <a href="member_details.html#jiyeon" class="member">
+    <img src="images/JiYeon.webp"><h3>S24 JiYeon</h3>
+  </a>
+
+</section>
+
+  <!-- End of Members Section -->
+
+
+  <!-- Footer -->
+<footer class="footer">
+
+  <!-- LEFT : SOCIAL -->
+  <div class="footer-left">
+    <a href="https://www.youtube.com/@triplescosmos" target="_blank"><img src="images/youtube-icon-lg.png"></a>
+    <a href="https://www.instagram.com/triplescosmos/" target="_blank"><img src="images/instagram.avif"></a>
+    <a href="https://x.com/triplescosmos" target="_blank"><img src="images/x-logo-icon.avif"></a>
+    <a href="https://www.facebook.com/triplescosmos.archive" target="_blank"><img src="images/facebook-app-icon.avif"></a>
+    <a href="https://discord.gg/triplescosmos" target="_blank"><img src="images/discord.png"></a>
+  </div>
+
+
+  <!-- CENTER -->
+  <div class="footer-center">
+    <p>© 2026 tripleS | Inspired by Kpop Wiki</p>
+
+    <div class="footer-links">
+      <a href="https://shop.cosmo.fans/" target="_blank">Cosmo Web Shop</a>
+      <a href="https://www.triplescosmos.com/" target="_blank">tripleS Website</a>
+      <a href="https://www.mod-haus.com/" target="_blank">Modhaus Website</a>
+    </div>
+  </div>
+
+
+  <!-- RIGHT -->
+  <div class="footer-right">
+
+  <a class="cosmo-logo">
+    <img src="images/Cosmo_app_logo.webp">
+  </a>
+
+<div class="store-icons">
+    <a href="https://play.google.com/store/apps/details?id=com.modhaus.cosmo"><img src="images/google-play.webp"></a>
+    <a href="https://apps.apple.com/kr/app/cosmo-the-origin/id1617337069"><img src="images/apple-app-store.jpg"></a>
+  </div>
+
+</div>
+
+</footer>
+  <script src="script.js"></script>
+</body>
+</html>

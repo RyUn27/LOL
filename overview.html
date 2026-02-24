@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/webp" href="images/tripleS_icon.webp">
+  <title>tripleS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+    <div class="nav-left">
+      <a href="index.html">
+        <img src="images/tripleS_logo.png" alt="tripleS logo">
+      </a>
+    </div>
+
+    <ul class="nav-center">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="members.html">Members</a></li>
+      <li><a href="albums.html">Albums</a></li>
+      <li><a href="game.html">Game</a></li>
+      <li><a href="overview.html">Overview</a></li>
+      <li id="shopNav" style="display:none;">
+          <a href="shop.html">Shop</a>
+      </li>
+    </ul>
+
+    <div class="nav-right">
+      <!-- 🛒 CART ICON -->
+<a href="cart.html" id="cartIcon" class="cart-icon" style="display:none;">
+  🛒
+</a>
+  <a href="login.html" id="loginBtn" class="signin-btn">Sign in/up</a>
+
+  <div class="nav-profile" id="profileMenu" style="display: none;">
+    <img src="images/Profile_avatar.png" class="profile-img" alt="Profile" onclick="toggleDropdown()">
+    <div class="dropdown" id="dropdown">
+
+  <p class="dropdown-user" id="dropdownUsername"></p>
+
+  <!-- ⭐ ADMIN BUTTON -->
+  <a href="admin.html" id="adminLink" style="display:none;">Admin Dashboard</a>
+<!-- My Orders -->
+      <a href="order.html" id="myOrdersLink">My Orders</a>
+
+      <!-- Checkout (disabled if cart empty) -->
+      <a href="checkout.html" id="checkoutLink">Checkout</a>
+  <a href="#" onclick="logout()">Logout</a>
+
+</div>
+  </div>
+</div>
+  </nav>
+
+  </header>
+
+  <div class="breadcrumb">
+    <a href="index.html">Home</a>
+    <span>/</span>
+    <span class="current">Overview</span>
+  </div>
+
+  <section class="overview">
+
+  <h1>tripleS Overview</h1>
+
+  <p>
+    <strong>tripleS</strong> (Hangul: 트리플에스, Japanese: トリプルS), also known as
+    <strong>SSS</strong> and <strong>SocialSonyoSeoul</strong>, is a multinational
+    24-member South Korean girl group under <strong>MODHAUS</strong>.
+    The group officially debuted on <strong>February 13, 2023</strong> with the mini album
+    <strong>ASSEMBLE</strong> and its title track <strong>“Rising”</strong>,
+    featuring the first ten revealed members.
+    They later returned as a complete 24-member group on <strong>May 8, 2024</strong>
+    with their first studio album <strong>ASSEMBLE24</strong> and the title track
+    <strong>“Girls Never Die.”</strong>
+  </p>
+
+  <p>
+    tripleS operates through a unique fan-participation system in which fans vote to
+    form rotational sub-units and influence major group activities.
+    The first sub-unit, <strong>Acid Angel from Asia</strong>, debuted on
+    <strong>October 28, 2022</strong>, followed by
+    <strong>+(KR)ystal Eyes</strong> (May 4, 2023),
+    <strong>LOVElution</strong> (August 17, 2023),
+    <strong>EVOLution</strong> (October 11, 2023),
+    and <strong>Aria</strong> (January 15, 2024).
+  </p>
+
+  <p>
+    The group currently has thirteen official sub-units:
+    Acid Angel from Asia, +(KR)ystal Eyes, LOVElution, EVOLution, NXT, Aria,
+    Glow, Visionary Vision, ∞!, Moon, Sun, Neptune and Zenith,
+    as well as the collaborative unit <strong>ACID EYES</strong>.
+    NXT and Glow were created to introduce the final members before the
+    full 24-member lineup was completed.
+  </p>
+
+  <h2>Name Meaning</h2>
+
+  <p>
+    The name <strong>tripleS</strong> stands for <strong>SocialSonyoSeoul</strong>,
+    representing “social girls from Seoul.”
+    It also symbolizes small “s” trainees coming together to form one big “S,”
+    meaning the complete group.
+  </p>
+
+  <h2>History</h2>
+
+  <h3>2022 – Formation & First Unit</h3>
+  <p>
+    MODHAUS announced tripleS as a new type of K-pop group built on fan participation.
+    From May onward, the first ten members were revealed sequentially through teaser
+    content and the daily reality series <strong>SIGNAL</strong>.
+    The first sub-unit, <strong>Acid Angel from Asia</strong>, debuted with
+    <strong>ACCESS</strong> on October 28, 2022.
+  </p>
+
+  <h3>2023 – Official Debut & Unit Activities</h3>
+  <p>
+    tripleS debuted as a full group with <strong>ASSEMBLE</strong> and
+    <strong>“Rising”</strong> on February 13, 2023.
+    The fandom name <strong>WAV</strong> was selected through fan voting.
+    Throughout the year, new members were revealed up to S20 and multiple units
+    debuted, including LOVElution and EVOLution.
+    The ballad unit <strong>Aria</strong> was formed,
+    and the project unit <strong>NXT</strong> introduced the next members.
+    The group also won the <strong>MAMA Award for Best New Female Artist</strong>.
+  </p>
+
+  <h3>2024 – Complete 24 Members & Global Expansion</h3>
+  <p>
+    The final four members were revealed in April, completing the 24-member lineup.
+    On May 8, tripleS released <strong>ASSEMBLE24</strong> as a full group.
+    They achieved their first music show win with all members present.
+    The official dance unit <strong>Visionary Vision</strong> was formed,
+    and the group began Japanese promotions, including the unit <strong>∞!</strong>.
+  </p>
+
+  <h3>2025 – Tours, ASSEMBLE25 & tripleS Universe</h3>
+  <p>
+    tripleS launched their second world tour <strong>tripleS Come True</strong>.
+    The full group returned with <strong>ASSEMBLE25</strong>, with
+    <strong>“Are You Alive?”</strong> selected through fan voting.
+    They continued global concerts and unit activities,
+    and fans formed the new “tripleS Universe” units:
+    <strong>Moon, Sun, Neptune and Zenith</strong>.
+  </p>
+
+  <p>
+    On <strong>November 24</strong>, tripleS <strong>msnz</strong> released their
+    first mini album <strong>Beyond Beauty</strong>.
+    It includes the full-group winter song <strong>“Christmas Alone”</strong>
+    and one title track for each unit:
+    <strong>“Cameo Love”</strong> (Moon),
+    <strong>“Bubble Gum Girl”</strong> (Sun),
+    <strong>“Fly Up”</strong> (Neptune),
+    and <strong>“Q&A”</strong> (Zenith).
+  </p>
+
+</section>
+  <!-- Footer -->
+<footer class="footer">
+
+  <!-- LEFT : SOCIAL -->
+  <div class="footer-left">
+    <a href="https://www.youtube.com/@triplescosmos" target="_blank"><img src="images/youtube-icon-lg.png"></a>
+    <a href="https://www.instagram.com/triplescosmos/" target="_blank"><img src="images/instagram.avif"></a>
+    <a href="https://x.com/triplescosmos" target="_blank"><img src="images/x-logo-icon.avif"></a>
+    <a href="https://www.facebook.com/triplescosmos.archive" target="_blank"><img src="images/facebook-app-icon.avif"></a>
+    <a href="https://discord.gg/triplescosmos" target="_blank"><img src="images/discord.png"></a>
+  </div>
+
+
+  <!-- CENTER -->
+  <div class="footer-center">
+    <p>© 2026 tripleS | Inspired by Kpop Wiki</p>
+
+    <div class="footer-links">
+      <a href="https://shop.cosmo.fans/" target="_blank">Cosmo Web Shop</a>
+      <a href="https://www.triplescosmos.com/" target="_blank">tripleS Website</a>
+      <a href="https://www.mod-haus.com/" target="_blank">Modhaus Website</a>
+    </div>
+  </div>
+
+
+  <!-- RIGHT -->
+  <div class="footer-right">
+
+  <a class="cosmo-logo">
+    <img src="images/Cosmo_app_logo.webp">
+  </a>
+
+  <div class="store-icons">
+    <a href="https://play.google.com/store/apps/details?id=com.modhaus.cosmo"><img src="images/google-play.webp"></a>
+    <a href="https://apps.apple.com/kr/app/cosmo-the-origin/id1617337069"><img src="images/apple-app-store.jpg"></a>
+  </div>
+
+</div>
+
+</footer>
+<script src="script.js"></script>
+</body>
+</html>

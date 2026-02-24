@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/webp" href="images/tripleS_icon.webp">
+<title>tripleS</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+body{background:#000;color:white;font-family:Arial;margin:0;}
+.admin-container{padding:30px 40px;}
+table{width:100%;margin-top:20px;border-collapse:collapse;background:#111;}
+th,td{padding:12px;border-bottom:1px solid #333;text-align:center;}
+input{padding:10px;margin:5px;border-radius:8px;border:none;}
+button{padding:8px 14px;border:none;border-radius:8px;cursor:pointer;}
+.add-btn{background:gold;}
+.cancel-btn{background:gray;}
+.action-btn{margin:3px;}
+#preview{width:80px;display:block;margin-top:10px;}
+select{padding:6px;border-radius:6px;}
+</style>
+</head>
+
+<body>
+<header>
+    <nav class="navbar">
+      <div class="nav-left">
+        <a href="index.html">
+          <img src="images/tripleS_logo.png" alt="tripleS logo">
+        </a>
+      </div>
+      
+      <ul class="nav-center">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="members.html">Members</a></li>
+        <li><a href="albums.html">Albums</a></li>
+        <li><a href="game.html">Game</a></li>
+        <li><a href="overview.html">Overview</a></li>
+        <li id="shopNav" style="display:none;">
+          <a href="shop.html">Shop</a>
+        </li>
+      </ul>
+
+      <div class="nav-right">
+        <!-- 🛒 CART ICON -->
+<a href="cart.html" id="cartIcon" class="cart-icon" style="display:none;">
+  🛒
+</a>
+  <a href="login.html" id="loginBtn" class="signin-btn">Sign in/up</a>
+
+  <div class="nav-profile" id="profileMenu" style="display: none;">
+    <img src="images/Profile_avatar.png" class="profile-img" alt="Profile" onclick="toggleDropdown()">
+    <div class="dropdown" id="dropdown">
+
+  <p class="dropdown-user" id="dropdownUsername"></p>
+  <!-- ⭐ ADMIN BUTTON -->
+  <a href="admin.html" id="adminLink" style="display:none;">Admin Dashboard</a>
+  <!-- My Orders -->
+      <a href="order.html" id="myOrdersLink">My Orders</a>
+
+      <!-- Checkout (disabled if cart empty) -->
+      <a href="checkout.html" id="checkoutLink">Checkout</a>
+
+  <a href="#" onclick="logout()">Logout</a>
+
+</div>
+  </div>
+</div>
+
+    </nav>
+  </header>
+
+  <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span> / </span>
+        <span class="current">Admin</span>
+    </div>
+<div class="admin-container">
+
+<h2>👤 User Accounts</h2>
+<table>
+<thead>
+<tr><th>ID</th><th>Username</th><th>Email</th><th>Role</th><th>Action</th></tr>
+</thead>
+<tbody id="userTable"></tbody>
+</table>
+
+<h2>🖼 Add / Edit Photocard</h2>
+
+<input id="memberNumber" placeholder="Member S Number">
+<input id="memberName" placeholder="Member Name">
+<input id="price" type="number" placeholder="Price">
+<input id="qty" type="number" placeholder="Stock Quantity">
+<input id="imageSrc" placeholder="Image URL" oninput="previewImage()">
+
+<br>
+
+<button class="add-btn" id="mainBtn" onclick="addPhotocard()">Add Photocard</button>
+<button class="cancel-btn" onclick="cancelEdit()">Cancel</button>
+
+<img id="preview">
+
+<h2>📦 Photocard List</h2>
+<p style="color:gold;font-weight:bold;">
+Total Photocards: <span id="totalCards">0</span>
+</p>
+
+<table>
+<thead>
+<tr>
+<th>ID</th><th>Image</th><th>S No.</th><th>Name</th><th>Price</th><th>Stock</th><th>Action</th>
+</tr>
+</thead>
+<tbody id="adminTable"></tbody>
+</table>
+
+<h2 style="margin-top:60px;">📋 All Orders</h2>
+
+<p style="color:gold;font-weight:bold;">
+Total Orders: <span id="totalOrders">0</span> |
+Pending: <span id="pendingCount">0</span>
+</p>
+
+<table>
+<thead>
+<tr>
+<th>Order ID</th><th>User</th><th>Date</th><th>Items</th><th>Total</th><th>Status</th><th>Actions</th>
+</tr>
+</thead>
+<tbody id="ordersTable"></tbody>
+</table>
+
+</div>
+
+<script>
+
+/* 🔐 ADMIN PROTECTION */
+const currentUser = JSON.parse(localStorage.getItem("tripleSCurrentUser"));
+if(!currentUser || currentUser.role !== "admin"){
+  window.location.replace("index.html");
+}
+
+/* 👤 USERS */
+let userList = JSON.parse(localStorage.getItem("tripleSUsers")) || [];
+
+function renderUsers(){
+userTable.innerHTML="";
+userList.forEach((user,index)=>{
+userTable.innerHTML+=`
+<tr>
+<td>${index+1}</td>
+<td>${user.username}</td>
+<td>${user.email}</td>
+<td>${user.role}</td>
+<td>${user.role!=="admin" ? `<button onclick="deleteUser(${index})">Delete</button>`:"—"}</td>
+</tr>`;
+});
+localStorage.setItem("tripleSUsers", JSON.stringify(userList));
+}
+
+function deleteUser(index){
+if(confirm("Delete this user?")){
+userList.splice(index,1);
+renderUsers();
+}
+}
+
+/* 🖼 PHOTOCARDS */
+let photocardList = JSON.parse(localStorage.getItem("tripleSPhotocards")) || [];
+let editIndex=-1;
+
+function renderAdmin(){
+
+adminTable.innerHTML="";
+let totalStock=0;
+
+photocardList.forEach((card,index)=>{
+totalStock+=Number(card.qty);
+
+adminTable.innerHTML+=`
+<tr>
+<td>${index+1}</td>
+<td><img src="${card.image}" width="60"></td>
+<td>${card.memberNumber}</td>
+<td>${card.memberName}</td>
+<td>฿${Number(card.price).toLocaleString("th-TH")}</td>
+<td>${card.qty}</td>
+<td>
+<button onclick="editCard(${index})">Edit</button>
+<button onclick="deleteCard(${index})">Delete</button>
+</td>
+</tr>`;
+});
+
+totalCards.textContent=totalStock;
+localStorage.setItem("tripleSPhotocards", JSON.stringify(photocardList));
+}
+
+function addPhotocard(){
+
+if(!memberNumber.value||!memberName.value||!price.value||!qty.value||!imageSrc.value){
+alert("Fill all fields");return;
+}
+
+const newCard={
+memberNumber:memberNumber.value,
+memberName:memberName.value,
+price:price.value,
+qty:qty.value,
+image:imageSrc.value
+};
+
+if(editIndex===-1){
+photocardList.push(newCard);
+}else{
+photocardList[editIndex]=newCard;
+editIndex=-1;
+mainBtn.textContent="Add Photocard";
+}
+
+clearInputs();
+renderAdmin();
+}
+
+function editCard(index){
+const card=photocardList[index];
+memberNumber.value=card.memberNumber;
+memberName.value=card.memberName;
+price.value=card.price;
+qty.value=card.qty;
+imageSrc.value=card.image;
+previewImage();
+editIndex=index;
+mainBtn.textContent="Update Photocard";
+}
+
+function deleteCard(index){
+if(confirm("Delete this photocard?")){
+photocardList.splice(index,1);
+renderAdmin();
+}
+}
+
+function cancelEdit(){
+editIndex=-1;
+clearInputs();
+mainBtn.textContent="Add Photocard";
+}
+
+function clearInputs(){
+memberNumber.value="";
+memberName.value="";
+price.value="";
+qty.value="";
+imageSrc.value="";
+preview.src="";
+}
+
+function previewImage(){
+preview.src=imageSrc.value;
+}
+
+/* 📋 ORDERS */
+let orders = JSON.parse(localStorage.getItem("tripleSOrders")) || [];
+
+function renderOrders(){
+
+ordersTable.innerHTML="";
+
+document.getElementById("totalOrders").textContent=orders.length;
+document.getElementById("pendingCount").textContent=
+orders.filter(o=>o.status==="pending").length;
+
+orders.forEach((order,index)=>{
+
+const itemCount=order.items.length;
+const firstItem=order.items[0]?.name||"—";
+
+ordersTable.innerHTML+=`
+<tr>
+<td>${order.orderId}</td>
+<td>${order.user}</td>
+<td>${order.date}</td>
+<td>${itemCount} item<br><small>${firstItem}</small></td>
+<td>฿${Number(order.grandTotal).toLocaleString("th-TH")}</td>
+<td>
+<select onchange="updateOrderStatus(${index},this.value)">
+<option value="pending" ${order.status==="pending"?"selected":""}>Pending</option>
+<option value="processing" ${order.status==="processing"?"selected":""}>Processing</option>
+<option value="shipped" ${order.status==="shipped"?"selected":""}>Shipped</option>
+<option value="delivered" ${order.status==="delivered"?"selected":""}>Delivered</option>
+<option value="cancelled" ${order.status==="cancelled"?"selected":""}>Cancelled</option>
+</select>
+</td>
+<td>
+<button onclick="deleteOrder(${index})" style="background:#c0392b;">Delete</button>
+</td>
+</tr>`;
+});
+}
+
+function updateOrderStatus(index,status){
+orders[index].status=status;
+localStorage.setItem("tripleSOrders",JSON.stringify(orders));
+renderOrders();
+}
+
+/* ⭐ DELETE ORDER + RESTORE STOCK */
+function deleteOrder(index){
+
+if(!confirm("Delete this order?\n\nThis will restore the stock.")) return;
+
+const order=orders[index];
+
+let photocards=JSON.parse(localStorage.getItem("tripleSPhotocards"))||[];
+
+order.items.forEach(item=>{
+
+const pName=(item.name||"").trim().toLowerCase();
+const pNum=String(item.memberNumber||"").trim();
+const restoreQty=Number(item.qty??1);
+
+const match=photocards.find(card=>{
+return card.memberName.trim().toLowerCase()===pName &&
+String(card.memberNumber).trim()===pNum;
+});
+
+if(match){
+match.qty=Number(match.qty||0)+restoreQty;
+}
+
+});
+
+/* 🔥 sync memory */
+photocardList=photocards;
+
+localStorage.setItem("tripleSPhotocards",JSON.stringify(photocards));
+
+orders.splice(index,1);
+localStorage.setItem("tripleSOrders",JSON.stringify(orders));
+
+renderOrders();
+renderAdmin();
+}
+
+/* 🚀 LOAD */
+renderUsers();
+renderAdmin();
+renderOrders();
+
+</script>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/webp" href="images/tripleS_icon.webp"/>
+  <title>Checkout - tripleS</title>
+  <link rel="stylesheet" href="style.css"/>
+
+  <style>
+    body {
+      background: #000;
+      color: #eee;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .checkout-container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin: 30px 0 50px;
+      color: #ff4d4d;
+      font-size: 2.4rem;
+    }
+
+    .section {
+      background: #111;
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 32px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    }
+
+    h2 {
+      color: #ff4d4d;
+      margin-top: 0;
+      border-bottom: 1px solid #222;
+      padding-bottom: 12px;
+    }
+
+    .order-summary table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .order-summary th,
+    .order-summary td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #222;
+    }
+
+    .order-summary th {
+      background: #1a1a1a;
+      color: #ff4d4d;
+    }
+
+    .order-summary .total-row td {
+      font-weight: bold;
+      font-size: 1.2rem;
+      text-align: right;
+      color: #ff4d4d;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #ccc;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #333;
+      border-radius: 6px;
+      background: #1a1a1a;
+      color: white;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .payment-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin: 16px 0;
+    }
+
+    .payment-option label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      background: #1a1a1a;
+      border: 2px solid #333;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+      flex: 1;
+      min-width: 180px;
+    }
+
+    .payment-option input[type="radio"] {
+      accent-color: #ff4d4d;
+    }
+
+    .payment-option input:checked + span {
+      color: #ff4d4d;
+      font-weight: bold;
+    }
+
+    .payment-option:hover label {
+      border-color: #ff4d4d;
+    }
+
+    .actions {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin: 50px 0 80px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 36px;
+      font-size: 1.15rem;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+
+    .btn-primary {
+      background: #ff4d4d;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #e63939;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255,77,77,0.4);
+    }
+
+    .btn-secondary {
+      background: #444;
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background: #555;
+    }
+
+    .success-message {
+      text-align: center;
+      padding: 80px 30px;
+      background: #111;
+      border-radius: 12px;
+      margin: 40px 0;
+      display: none;
+    }
+
+    .success-message h2 {
+      color: #4caf50;
+      margin-bottom: 20px;
+    }
+
+    .success-message p {
+      font-size: 1.15rem;
+      margin: 12px 0;
+    }
+
+    .order-id {
+      font-weight: bold;
+      color: #ff4d4d;
+      font-size: 1.3rem;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<header>
+    <nav class="navbar">
+    <div class="nav-left">
+      <a href="index.html">
+        <img src="images/tripleS_logo.png" alt="tripleS logo">
+      </a>
+    </div>
+
+    <ul class="nav-center">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="members.html">Members</a></li>
+      <li><a href="albums.html">Albums</a></li> 
+      <li><a href="game.html">Game</a></li>
+      <li><a href="overview.html">Overview</a></li>
+      <li id="shopNav" style="display:none;"><a href="shop.html">Shop</a></li>
+      <li id="adminNav" style="display:none;"><a href="admin.html">Admin</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <!-- 🛒 CART ICON -->
+<a href="cart.html" id="cartIcon" class="cart-icon" style="display:none;">
+  🛒
+</a>
+  <a href="login.html" id="loginBtn" class="signin-btn">Sign in/up</a>
+
+  <div class="nav-profile" id="profileMenu" style="display: none;">
+    <img src="images/Profile_avatar.png" class="profile-img" alt="Profile" onclick="toggleDropdown()">
+    <div class="dropdown" id="dropdown">
+
+  <p class="dropdown-user" id="dropdownUsername"></p>
+
+  <!-- ⭐ ADMIN BUTTON -->
+  <a href="admin.html" id="adminLink" style="display:none;">Admin Dashboard</a>
+<!-- My Orders -->
+      <a href="order.html" id="myOrdersLink">My Orders</a>
+
+      <!-- Checkout (disabled if cart empty) -->
+      <a href="checkout.html" id="checkoutLink">Checkout</a>
+  <a href="#" onclick="logout()">Logout</a>
+
+</div>
+  </div>
+</div>
+  </nav>
+
+  </header>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a>
+  <span> / </span>
+  <a href="cart.html">Cart</a>
+  <span> / </span>
+  <span class="current">Checkout</span>
+</div>
+
+<div class="checkout-container">
+  <h1>Checkout</h1>
+
+  <!-- Order Summary -->
+  <div class="section order-summary">
+    <h2>Order Summary</h2>
+    <table id="summaryTable">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Price</th>
+          <th>Qty</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+      <tfoot>
+        <tr class="total-row">
+          <td colspan="3">Grand Total</td>
+          <td id="grandTotal">฿0</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <!-- Shipping Information -->
+  <div class="section">
+    <h2>Shipping Information</h2>
+    <div class="form-group">
+      <label for="fullName">Full Name *</label>
+      <input type="text" id="fullName" required placeholder="Your full name">
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone Number *</label>
+      <input type="tel" id="phone" required placeholder="081-234-5678">
+    </div>
+    <div class="form-group">
+      <label for="address">Full Shipping Address *</label>
+      <textarea id="address" rows="3" required placeholder="House No., Moo, Road, Tambon/District, Amphoe, Province, Postal Code"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="note">Order Note (optional)</label>
+      <textarea id="note" rows="2" placeholder="e.g. Leave at security desk, call before delivery"></textarea>
+    </div>
+  </div>
+
+  <!-- Payment Method -->
+  <div class="section">
+    <h2>Payment Method</h2>
+    <div class="payment-options">
+      <div class="payment-option">
+        <label>
+          <input type="radio" name="payment" value="promptpay" checked>
+          <span>PromptPay / QR Code</span>
+        </label>
+      </div>
+      <div class="payment-option">
+        <label>
+          <input type="radio" name="payment" value="cod">
+          <span>Cash on Delivery (COD)</span>
+        </label>
+      </div>
+      <div class="payment-option">
+        <label>
+          <input type="radio" name="payment" value="bank">
+          <span>Bank Transfer</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Actions -->
+  <div class="actions">
+    <a href="cart.html" class="btn btn-secondary">Back to Cart</a>
+    <button class="btn btn-primary" id="confirmOrder">Confirm & Place Order</button>
+  </div>
+
+  <!-- Success / Thank You -->
+  <div class="success-message" id="successMessage">
+    <h2>Order Placed Successfully!</h2>
+    <p>Thank you for shopping with tripleS ♡</p>
+    <p>Your order has been received. We will contact you soon.</p>
+    <p class="order-id">Order ID: <span id="orderIdDisplay"></span></p>
+    <div style="margin-top: 40px;">
+      <a href="index.html" class="btn btn-primary">Back to Home</a>
+      <a href="shop.html" class="btn btn-secondary" style="margin-left:20px;">Continue Shopping</a>
+      <a href="order.html" class="btn btn-secondary" style="margin-left:20px;">View My Orders</a>
+    </div>
+  </div>
+</div>
+
+<script>
+const currentUser = JSON.parse(localStorage.getItem("tripleSCurrentUser"));
+
+if (!currentUser) {
+  alert("Please login first");
+  location.href = "login.html";
+}
+
+// Navbar update
+function updateNav() {
+  document.getElementById("loginBtn").style.display = "none";
+  document.getElementById("profileMenu").style.display = "block";
+  document.getElementById("dropdownUsername").textContent = currentUser.username;
+  document.getElementById("shopNav").style.display = "block";
+
+  if (currentUser.role === "admin") {
+    document.getElementById("adminLink").style.display = "block";
+    document.getElementById("adminNav").style.display = "block";
+  }
+}
+
+function toggleDropdown() {
+  document.getElementById("dropdown").classList.toggle("show");
+}
+
+function logout() {
+  localStorage.removeItem("tripleSCurrentUser");
+  location.href = "index.html";
+}
+
+// Load cart summary
+function loadSummary() {
+  let cart = JSON.parse(localStorage.getItem("tripleSCart")) || [];
+  let userCart = cart.filter(item => item.user === currentUser.username);
+
+  const tbody = document.querySelector("#summaryTable tbody");
+  tbody.innerHTML = "";
+
+  if (userCart.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding:40px;">Your cart is empty</td></tr>';
+    document.getElementById("grandTotal").textContent = "฿0";
+    document.getElementById("confirmOrder").disabled = true;
+    return null;
+  }
+
+  let grandTotal = 0;
+
+  userCart.forEach(item => {
+    const total = item.price * item.qty;
+    grandTotal += total;
+
+    tbody.innerHTML += `
+      <tr>
+        <td>${item.name}</td>
+        <td>฿${Number(item.price).toLocaleString("th-TH")}</td>
+        <td>${item.qty}</td>
+        <td>฿${total.toLocaleString("th-TH")}</td>
+      </tr>
+    `;
+  });
+
+  document.getElementById("grandTotal").textContent = `฿${grandTotal.toLocaleString("th-TH")}`;
+
+  return { userCart, grandTotal };
+}
+
+// Confirm order – now includes memberNumber
+// Confirm order – now includes memberNumber
+document.getElementById("confirmOrder").addEventListener("click", () => {
+  const fullName = document.getElementById("fullName").value.trim();
+  const phone    = document.getElementById("phone").value.trim();
+  const address  = document.getElementById("address").value.trim();
+  const note     = document.getElementById("note").value.trim();
+
+  if (!fullName || !phone || !address) {
+    alert("Please complete all required fields: Full Name, Phone, and Address.");
+    return;
+  }
+
+  const summary = loadSummary();
+  if (!summary || summary.userCart.length === 0) {
+    alert("Cart is empty.");
+    return;
+  }
+
+  const orderId = "ORD-" + Date.now().toString().slice(-8);
+
+  const newOrder = {
+    orderId,
+    user: currentUser.username,
+    date: new Date().toLocaleString("th-TH"),
+    items: summary.userCart.map(item => ({
+      name: item.name,
+      memberNumber: item.memberNumber || "—",   // ← THIS LINE WAS MISSING
+      price: item.price,
+      qty: item.qty,
+      total: item.price * item.qty
+    })),
+    grandTotal: summary.grandTotal,
+    shipping: { fullName, phone, address, note: note || "-" },
+    paymentMethod: document.querySelector('input[name="payment"]:checked')?.value || "promptpay",
+    status: "pending"
+  };
+
+  // Save order
+  let orders = JSON.parse(localStorage.getItem("tripleSOrders")) || [];
+  orders.push(newOrder);
+  localStorage.setItem("tripleSOrders", JSON.stringify(orders));
+
+  // Clear cart
+  let cart = JSON.parse(localStorage.getItem("tripleSCart")) || [];
+  cart = cart.filter(item => item.user !== currentUser.username);
+  localStorage.setItem("tripleSCart", JSON.stringify(cart));
+
+  // Show success
+  document.querySelector(".checkout-container > *:not(#successMessage)").forEach(el => el.style.display = "none");
+  const success = document.getElementById("successMessage");
+  success.style.display = "block";
+  document.getElementById("orderIdDisplay").textContent = orderId;
+});
+document.addEventListener("DOMContentLoaded", () => {
+  updateNav();
+  loadSummary();
+});
+</script>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/webp" href="images/tripleS_icon.webp">   
+  <title>tripleS</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<section class="auth-container">
+  <div class="auth-box">
+
+    <!-- Tabs -->
+    <div class="auth-tabs">
+      <button id="loginTab" class="active">Login</button>
+      <button id="signupTab">Sign Up</button>
+    </div>
+
+    <!-- LOGIN FORM -->
+    <form id="loginForm" class="auth-form">
+      <h2>Welcome Back</h2>
+      <input type="email" placeholder="Email" required autocomplete="email"/>
+      <input type="password" placeholder="Password" required autocomplete="current-password"/>
+      <button type="submit" class="auth-btn">Login</button>
+      <button type="button" onclick="location.href='index.html'" 
+              class="auth-btn" style="background:#ffffff; color:#000; margin-top:12px;">
+        Back to Home
+      </button>
+    </form>
+
+    <!-- SIGN UP FORM -->
+    <form id="signupForm" class="auth-form hidden">
+      <h2>Create Account</h2>
+      <input type="text" placeholder="Username" required minlength="3" autocomplete="username"/>
+      <input type="email" placeholder="Email" required autocomplete="email"/>
+      <input type="password" id="signupPassword" placeholder="Password" required minlength="6" autocomplete="new-password"/>
+      <input type="password" id="signupConfirm" placeholder="Confirm Password" required autocomplete="new-password"/>
+      <button type="submit" class="auth-btn">Sign Up</button>
+    </form>
+
+  </div>
+</section>
+
+<!-- .................................................... -->
+<!-- Keep your existing HTML (forms, inputs, tabs) the same -->
+<script>
+
+/* ✅ AUTO CREATE ADMIN (runs once) */
+let users = JSON.parse(localStorage.getItem("tripleSUsers") || "[]");
+
+if (!users.some(u => u.role === "admin")) {
+  users.push({
+    username: "Admin",
+    email: "admin@triples.com",
+    password: "Admin@12345",
+    role: "admin"
+  });
+
+  localStorage.setItem("tripleSUsers", JSON.stringify(users));
+}
+
+
+/* ───────────────── TAB SWITCH ───────────────── */
+const loginTab   = document.getElementById("loginTab");
+const signupTab  = document.getElementById("signupTab");
+const loginForm  = document.getElementById("loginForm");
+const signupForm = document.getElementById("signupForm");
+
+loginTab.onclick = () => {
+  loginTab.classList.add("active");
+  signupTab.classList.remove("active");
+  loginForm.classList.remove("hidden");
+  signupForm.classList.add("hidden");
+};
+
+signupTab.onclick = () => {
+  signupTab.classList.add("active");
+  loginTab.classList.remove("active");
+  signupForm.classList.remove("hidden");
+  loginForm.classList.add("hidden");
+};
+
+
+/* ───────────────── SIGN UP ───────────────── */
+signupForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const username = signupForm.querySelector('input[type="text"]').value.trim();
+  const email    = signupForm.querySelector('input[type="email"]').value.trim();
+  const password = document.getElementById("signupPassword").value;
+  const confirm  = document.getElementById("signupConfirm").value;
+
+  if (password !== confirm) {
+    alert("Passwords do not match!");
+    return;
+  }
+
+  let users = JSON.parse(localStorage.getItem("tripleSUsers") || "[]");
+
+  if (users.some(u => u.email.toLowerCase() === email.toLowerCase())) {
+    alert("Email already registered.");
+    return;
+  }
+
+  users.push({
+    username,
+    email,
+    password,
+    role: "user"   // ✅ DEFAULT ROLE
+  });
+
+  localStorage.setItem("tripleSUsers", JSON.stringify(users));
+
+  alert("Account created!");
+  loginTab.click();
+});
+
+
+/* ───────────────── LOGIN ───────────────── */
+loginForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const email    = loginForm.querySelector('input[type="email"]').value.trim();
+  const password = loginForm.querySelector('input[type="password"]').value;
+
+  const users = JSON.parse(localStorage.getItem("tripleSUsers") || "[]");
+
+  const user = users.find(u =>
+    u.email.toLowerCase() === email.toLowerCase() &&
+    u.password === password
+  );
+
+  if (user) {
+
+    localStorage.setItem("tripleSLoggedIn", "true");
+    localStorage.setItem("tripleSCurrentUser", JSON.stringify(user));
+
+    /* ✅ REDIRECT BY ROLE */
+    if (user.role === "admin") {
+      window.location.href = "admin.html";
+    } else {
+      window.location.href = "index.html";
+    }
+
+  } else {
+    alert("Invalid email or password.");
+  }
+});
+
+</script>
+</body>
+</html>

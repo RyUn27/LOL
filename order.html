@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/webp" href="images/tripleS_icon.webp"/>
+  <title>My Orders - tripleS</title>
+  <link rel="stylesheet" href="style.css"/>
+
+  <style>
+    body { background:#000; color:#eee; font-family:Arial, sans-serif; margin:0; }
+    .orders-container { max-width:1100px; margin:40px auto; padding:0 20px; }
+    h1 { text-align:center; margin:30px 0 40px; color:#ff4d4d; font-size:2.4rem; }
+
+    .tabs {
+      display:flex;
+      justify-content:center;
+      margin-bottom:30px;
+      gap:20px;
+    }
+
+    .tab-btn {
+      background:#222;
+      color:white;
+      border:none;
+      padding:12px 32px;
+      font-size:1.1rem;
+      border-radius:8px 8px 0 0;
+      cursor:pointer;
+      transition:all 0.2s;
+    }
+
+    .tab-btn.active {
+      background:#ff4d4d;
+      color:#000;
+      font-weight:bold;
+    }
+
+    .tab-btn:hover:not(.active) {
+      background:#333;
+    }
+
+    .order-list { display:none; }
+    .order-list.active { display:block; }
+
+    .order-card {
+      background:#111;
+      border-radius:10px;
+      padding:20px;
+      margin-bottom:20px;
+      border-left:4px solid #ff4d4d;
+    }
+
+    .order-header {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:16px;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+
+    .order-id { font-weight:bold; font-size:1.2rem; }
+    .order-date { color:#aaa; }
+    .order-status {
+      padding:6px 14px;
+      border-radius:20px;
+      font-size:0.9rem;
+      font-weight:bold;
+    }
+
+    .status-pending  { background:#f39c12; color:#000; }
+    .status-processing { background:#3498db; color:white; }
+    .status-shipped   { background:#2ecc71; color:white; }
+    .status-delivered { background:#27ae60; color:white; }
+    .status-cancelled { background:#e74c3c; color:white; }
+
+    .order-items table {
+      width:100%;
+      border-collapse:collapse;
+      margin:16px 0;
+    }
+
+    .order-items th, .order-items td {
+      padding:10px;
+      text-align:left;
+      border-bottom:1px solid #222;
+    }
+
+    .order-items th { background:#1a1a1a; color:#ff4d4d; }
+
+    .order-total {
+      font-size:1.3rem;
+      text-align:right;
+      margin-top:16px;
+      color:#ff4d4d;
+    }
+
+    .empty-orders {
+      text-align:center;
+      padding:80px 20px;
+      color:#777;
+      font-size:1.4rem;
+    }
+
+    .empty-orders a {
+      color:#ff4d4d;
+      text-decoration:underline;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar (same as other pages) -->
+
+<header>
+    <nav class="navbar">
+    <div class="nav-left">
+      <a href="index.html">
+        <img src="images/tripleS_logo.png" alt="tripleS logo">
+      </a>
+    </div>
+
+    <ul class="nav-center">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="members.html">Members</a></li>
+      <li><a href="albums.html">Albums</a></li>
+      <li><a href="game.html">Game</a></li>
+      <li><a href="overview.html">Overview</a></li>
+        
+      <li id="shopNav" style="display:none;"><a href="shop.html">Shop</a></li>
+      <li id="adminNav" style="display:none;"><a href="admin.html">Admin</a></li>
+      </li>
+    </ul>
+
+    <div class="nav-right">
+      <!-- 🛒 CART ICON -->
+<a href="cart.html" id="cartIcon" class="cart-icon" style="display:none;">
+  🛒
+</a>
+  <a href="login.html" id="loginBtn" class="signin-btn">Sign in/up</a>
+
+  <div class="nav-profile" id="profileMenu" style="display: none;">
+    <img src="images/Profile_avatar.png" class="profile-img" alt="Profile" onclick="toggleDropdown()">
+    <div class="dropdown" id="dropdown">
+
+  <p class="dropdown-user" id="dropdownUsername"></p>
+
+  <!-- ⭐ ADMIN BUTTON -->
+  <a href="admin.html" id="adminLink" style="display:none;">Admin Dashboard</a>
+<!-- My Orders -->
+      <a href="order.html" id="myOrdersLink">My Orders</a>
+
+      <!-- Checkout (disabled if cart empty) -->
+      <a href="checkout.html" id="checkoutLink">Checkout</a>
+  <a href="#" onclick="logout()">Logout</a>
+
+</div>
+  </div>
+</div>
+  </nav>
+
+  </header>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="index.html">Home</a> <span>/</span>
+  <span class="current">My Orders</span>
+</div>
+
+<div class="orders-container">
+  <h1>My Orders</h1>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="ongoing">Ongoing</button>
+    <button class="tab-btn" data-tab="completed">Completed</button>
+  </div>
+
+  <!-- Ongoing Orders -->
+  <div id="ongoing" class="order-list active">
+    <div id="ongoingOrders"></div>
+  </div>
+
+  <!-- Completed Orders -->
+  <div id="completed" class="order-list">
+    <div id="completedOrders"></div>
+  </div>
+
+  <div class="empty-orders" id="emptyMessage" style="display:none;">
+    You don't have any orders yet.<br><br>
+    <a href="shop.html">Start shopping now →</a>
+  </div>
+</div>
+
+<script>
+const currentUser = JSON.parse(localStorage.getItem("tripleSCurrentUser"));
+if (!currentUser) {
+  alert("Please login first");
+  location.href = "login.html";
+}
+
+// Navbar logic (copy from other pages)
+function updateNav() {
+  document.getElementById("loginBtn").style.display = "none";
+  document.getElementById("profileMenu").style.display = "block";
+  document.getElementById("dropdownUsername").textContent = currentUser.username;
+  document.getElementById("shopNav").style.display = "block";
+
+  if (currentUser.role === "admin") {
+    document.getElementById("adminLink").style.display = "block";
+    document.getElementById("adminNav").style.display = "block";
+  }
+}
+
+function toggleDropdown() { document.getElementById("dropdown").classList.toggle("show"); }
+function logout() { localStorage.removeItem("tripleSCurrentUser"); location.href = "index.html"; }
+
+// Tab switching
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    document.querySelectorAll('.order-list').forEach(tab => tab.classList.remove('active'));
+    document.getElementById(btn.dataset.tab).classList.add('active');
+  });
+});
+
+function loadOrders() {
+  let orders = JSON.parse(localStorage.getItem("tripleSOrders")) || [];
+  let userOrders = orders.filter(o => o.user === currentUser.username);
+
+  const ongoingEl = document.getElementById("ongoingOrders");
+  const completedEl = document.getElementById("completedOrders");
+  ongoingEl.innerHTML = "";
+  completedEl.innerHTML = "";
+
+  if (userOrders.length === 0) {
+    document.getElementById("emptyMessage").style.display = "block";
+    return;
+  }
+
+  document.getElementById("emptyMessage").style.display = "none";
+
+  const ongoingStatuses = ["pending", "processing", "shipped"];
+  const completedStatuses = ["delivered", "cancelled", "received"];
+
+  userOrders.forEach(order => {
+    const isOngoing = ongoingStatuses.includes(order.status);
+    const target = isOngoing ? ongoingEl : completedEl;
+
+    let statusClass = `status-${order.status}`;
+    let statusText = order.status.charAt(0).toUpperCase() + order.status.slice(1);
+
+    let html = `
+      <div class="order-card">
+        <div class="order-header">
+          <div>
+            <div class="order-id">${order.orderId}</div>
+            <div class="order-date">${order.date}</div>
+          </div>
+          <div class="order-status ${statusClass}">${statusText}</div>
+        </div>
+
+        <div class="order-items">
+          <table>
+            <thead>
+              <tr><th>Item</th><th>Price</th><th>Qty</th><th>Total</th></tr>
+            </thead>
+            <tbody>
+    `;
+
+    order.items.forEach(item => {
+      html += `
+        <tr>
+          <td>${item.name}</td>
+          <td>฿${Number(item.price).toLocaleString("th-TH")}</td>
+          <td>${item.qty}</td>
+          <td>฿${Number(item.total).toLocaleString("th-TH")}</td>
+        </tr>
+      `;
+    });
+
+    html += `
+            </tbody>
+          </table>
+        </div>
+
+        <div class="order-total">
+          Grand Total: ฿${Number(order.grandTotal).toLocaleString("th-TH")}
+        </div>
+
+        <div style="margin-top:16px; color:#aaa;">
+          <strong>Shipping to:</strong> ${order.shipping.fullName} (${order.shipping.phone})<br>
+          <strong>Address:</strong> ${order.shipping.address}<br>
+          ${order.shipping.note !== "-" ? `<strong>Note:</strong> ${order.shipping.note}` : ""}
+        </div>
+      </div>
+    `;
+
+    target.innerHTML += html;
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  updateNav();
+  loadOrders();
+});
+</script>
+<script src="script.js"></script>
+</body>
+</html>

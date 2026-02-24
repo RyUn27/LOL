@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/webp" href="images/tripleS_icon.webp">
+  <title>tripleS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+    <div class="nav-left">
+      <a href="index.html">
+        <img src="images/tripleS_logo.png" alt="tripleS logo">
+      </a>
+    </div>
+
+    <ul class="nav-center">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="members.html">Members</a></li>
+      <li><a href="albums.html">Albums</a></li>
+      <li><a href="game.html">Game</a></li>
+      <li><a href="overview.html">Overview</a></li>
+      <li id="shopNav" style="display:none;">
+          <a href="shop.html">Shop</a>
+      </li>
+    </ul>
+
+    <div class="nav-right">
+      <!-- 🛒 CART ICON -->
+<a href="cart.html" id="cartIcon" class="cart-icon" style="display:none;">
+  🛒
+</a>
+  <a href="login.html" id="loginBtn" class="signin-btn">Sign in/up</a>
+
+  <div class="nav-profile" id="profileMenu" style="display: none;">
+    <img src="images/Profile_avatar.png" class="profile-img" alt="Profile" onclick="toggleDropdown()">
+    <div class="dropdown" id="dropdown">
+
+  <p class="dropdown-user" id="dropdownUsername"></p>
+
+  <!-- ⭐ ADMIN BUTTON -->
+  <a href="admin.html" id="adminLink" style="display:none;">Admin Dashboard</a>
+<!-- My Orders -->
+      <a href="order.html" id="myOrdersLink">My Orders</a>
+
+      <!-- Checkout (disabled if cart empty) -->
+      <a href="checkout.html" id="checkoutLink">Checkout</a>
+  <a href="#" onclick="logout()">Logout</a>
+
+</div>
+  </div>
+</div>
+  </nav>
+
+  </header>
+
+  <div class="breadcrumb">
+    <a href="index.html">Home</a>
+    <span> / </span>
+    <a href="albums.html">Album</a>
+    <span> / </span>
+    <span class="current" id="album-breadcrumb">Album</span>
+  </div>
+
+<!-- ASSEMBLE25 Detail Page -->
+<section id="assemble25" class="album-detail"; padding: 40px 20px; max-width: 1200px; margin: 0 auto; background: #000; color: #fff; min-height: 80vh;">
+  <h1 style="text-align: center; margin-bottom: 40px;">ASSEMBLE25</h1>
+
+  <div class="album-detail-container">
+    <!-- Smaller & centered album cover -->
+    <div class="album-cover-large">
+      <img src="images/Assemble25.webp" alt="ASSEMBLE25">
+    </div>
+
+    <!-- Tracklist -->
+    <div class="tracklist-section">
+      <h2 style="color: #ffffff; margin-bottom: 20px;">Tracklist</h2>
+      <ol class="tracklist">
+        <li>@% (Alpha Percent)</li>
+        <li>깨어 (Are You Alive)</li>
+        <li>추리소설 (Detective Soseol)</li>
+        <li>이제 우리 불꽃놀이 (Firework Diary)</li>
+        <li>Love Child</li>
+        <li>Persona</li>
+        <li>Too Hot</li>
+        <li>Diablo</li>
+        <li>Friend Zone</li>
+        <li>Love2Love</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- Title Track YouTube -->
+  <div class="youtube-section">
+    <h2 style="color: #ffffff; text-align: center; margin: 40px 0 20px;">Title Track MV</h2>
+    <div class="video-wrapper">
+      <iframe width="100%" height="450" src="https://youtu.be/pTycfmVzdl8?list=RDpTycfmVzdl8" 
+              title="tripleS - ASSEMBLE25 Title Track" frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+
+</div>
+  <div class="lyrics-section">
+    <h1 class="lyrics-title">깨어 (Are You Alive)</h1>
+    <h4>Song by tripleS ‧ 2025</h3>
+    <audio controls>
+      <source src="audio/tripleS(트리플에스) '깨어' (Are You Alive) Official MV.mp3" type="audio/mpeg">
+    </audio>
+    <div class="lyrics-box">
+    <h3>Lyrics</h3>
+    <pre>
+      Are you alive?
+      Huh
+      La-la-la, la-la-la-la, la-la-la, la-la
+      La-la-la, la-la-la-la, la-la-la, la-la
+      La-la-la, la-la-la-la, la-la-la, la-la
+      La-la-la, la-la-la-la, la-la-la, la-la
+      저기 깜빡이는 불빛
+      손에 잡히질 않아
+      때론 희망 때론 절망
+      그 사이 어긋난 채로 yeah
+      Do it 세상은 점점 더 화려하게 빛나
+      근데 왜 더 숨이 차
+      더 뛰어도 꿈은 더 멀어져
+      La-la-la, la-la-la-la, la-la-la, la-la (깨어나 이제)
+      La-la-la, la-la-la-la, la-la-la, la-la
+      사실 난 행복하고 싶은 걸 누구보다 더
+      La-la-la, la-la-la-la, la-la-la, la-la
+      아 보니까 너도 huh
+      날 닮은 것 같아 uh
+      넘어지고 슬퍼도 그저
+      넌 내색조차 안 하네
+      우리 그냥 도망치자
+      아무도 날 찾지 못하게
+      더 짙어버린 꿈으로
+      초란 날 더 숨겨
+      Do it 광고 속 화려한 저 세상을 향해
+      근데 왜 더 숨이 차
+      더 뛰어도 꿈은 더 사라져
+      La-la-la, la-la-la-la, la-la-la, la-la (깨어나 이제)
+      La-la-la, la-la-la-la, la-la-la, la-la
+      사실 난 행복하고 예쁜 걸 누구보다 더
+      La-la-la, la-la-la-la, la-la-la, la-la
+      La, la-la, la, la, la, la
+      La, la-la, la, la, 더 뛰어도 꿈은 더 멀어져
+      La-la-la, la-la-la-la, la-la-la, la-la (yeah, yeah)
+      La-la-la, la-la-la-la, la-la-la, la-la (we gonna run away)
+      Ooh, ah 울지 마, 다 악몽일 뿐이야 내 세상은
+      꿈에서 깨우던 햇살 oh
+      You finally realize
+      눈을 뜨면 행복 다 여기 있단 걸
+      빛나고 있어 우린 여기서 we so alive, yeah
+      La-la-la, la-la-la-la, la-la-la, la-la (깨어나 이제)
+      La-la-la, la-la-la-la, la-la-la, la-la
+      사실 난 행복하고 싶은 걸 누구보다 더
+      La-la-la, la-la-la-la, la-la-la, la-la (ah, yeah, yeah, yeah)
+      더 큰 꿈을 향해 달려가 좀 더 더 높이 (ooh, whoa)
+      더 큰 절망 향해 떨어져 좀 더 깊숙이 (사실 난)
+      내일 눈을 뜨면 모든 게 꿈에 닿기를 (행복하고 예쁜 걸 누구보다도)
+      La-la-la, la-la-la-la, la-la-la, la-la
+      꿈에서 깨면
+    </pre>
+  </div>
+  </div>
+  <div style="text-align: center; margin-top: 40px;">
+    <button onclick="location.href='albums.html'"
+style="padding: 12px 30px; font-size: 1.1rem; background: #6c757d; color: white; border: none; border-radius: 30px; cursor: pointer;">
+  ← Back to Albums
+</button>
+  </div>
+</section>
+
+<!-- ASSEMBLE24 Detail Page -->
+<section id="assemble24" class="album-detail" style="display:none; padding: 40px 20px; max-width: 1200px; margin: 0 auto; background: #000; color: #fff; min-height: 80vh;">
+  <h1 style="text-align: center; margin-bottom: 40px;">ASSEMBLE24</h1>
+
+  <div class="album-detail-container">
+    <!-- Smaller & centered album cover -->
+    <div class="album-cover-large">
+      <img src="images/ASSEMBLE24.webp" alt="ASSEMBLE24">
+    </div>
+
+    <!-- Tracklist -->
+    <div class="tracklist-section">
+      <h2 style="color: #ffffff; margin-bottom: 20px;">Tracklist</h2>
+      <ol class="tracklist">
+        <li>S</li>
+        <li>Girls Never Die</li>
+        <li>가시권 (Heart Raider)</li>
+        <li>Midnight Flower</li>
+        <li>White Soul Sneakers</li>
+        <li>치유 (Chiyu)</li>
+        <li>24</li>
+        <li>이면의 이면 (Beyond the Beyond)</li>
+        <li>Non Scale</li>
+        <li>Dimension</li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- Title Track YouTube -->
+  <div class="youtube-section">
+    <h2 style="color: #ffffff; text-align: center; margin: 40px 0 20px;">Title Track MV</h2>
+    <div class="video-wrapper">
+      <iframe width="100%" height="450" src="https://youtu.be/2tda_TCjz8w?list=RD2tda_TCjz8w" 
+              title="tripleS - ASSEMBLE24 Title Track" frameborder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+  <div class="lyrics-section">
+    <h1 class="lyrics-title">Girls Never Die</h1>
+    <h4>Song by tripleS ‧ 2024</h3>
+    <audio controls>
+      <source src="audio/tripleS(트리플에스) 'Girls Never Die' Official MV.mp3" type="audio/mpeg">
+    </audio>
+    <div class="lyrics-box">
+    <h3>Lyrics</h3>
+    <pre>
+      Higher now, can't deny, never die
+      Higher now, can't deny, never die (다시 해보자)
+      Higher now (yeah), can't deny, never die (let's go)
+      Higher now (ooh), can't deny (let's go), never die (yeah)
+      La-la-la, la-la-la-la
+      끝까지 가볼래 포기는 안 할래 난
+      La-la-la, la-la-la-la
+      쓰러져도 일어나
+      We go, we high, go now, oh-oh
+      La-la-la, la-la-la-la
+      Girls never die 절대 never cry
+      세상은 늘 화려한 꿈
+      내 눈이 멀게 눈부셔 shine better
+      난 여기 보이지 않겠지 점점
+      초라한 내가 싫어
+      날 보이기도 싫어
+      짙게 화장했던 이유
+      필터 꼈던 이유 알겠니?
+      이젠 알겠니?
+      La-la-la, la-la-la-la
+      끝까지 가볼래 포기는 안 할래 난
+      La-la-la, la-la-la-la
+      쓰러져도 일어나
+      We go, we high, go now, oh-oh
+      La-la-la, la-la-la-la
+      Girls never die 절대 never cry
+      비켜봐 봐, 비켜 핑계는
+      우린 본질 속에 진주가 될래
+      꿈의 난이도 좀 더 난 높일게
+      고통, 시련 다듬어 내가 될게
+      I'm just 이제 조금 알겠어
+      I shine 왜 날 힘들게 울게만 둔 건지
+      Hold me closer broken myself, yeah
+      La-la-la, la-la-la-la
+      끝까지 가볼래 포기는 안 할래 난
+      La-la-la, la-la-la-la
+      쓰러져도 일어나
+      We go, we high, go now, oh-oh
+      La-la-la, la-la-la-la
+      Girls never die 절대 never cry
+      날 따라와 달라진 날
+      하나가 되자
+      너의 꿈이 내가 되고
+      우리 함께 꾸는 꿈
+      두려움 따위 다 함께 있다면은
+      이제 무서울 것 없지
+      다시 해볼까?
+      Yeah, yeah, yeah (yeah)
+      La-la-la, la-la-la-la (oh)
+      끝까지 가볼래 포기는 안 할래 난
+      La-la-la, la-la-la-la
+      쓰러져도 일어나 (oh)
+      We go (so high), we high, go now, oh-oh
+      La-la-la, la-la-la-la
+      Girls never die 절대 never cry (never cry)
+      La-la-la, la-la-la-la
+      Girls never die 절대 never cry, oh
+      La-la-la, la-la-la-la
+      끝까지 가볼래 포기는 안 할래
+      We go, we high, go now, oh-oh
+      La-la-la, la-la-la-la
+      Girls never die 절대 never cry
+    </pre>
+  </div>
+  </div>
+  <div style="text-align: center; margin-top: 40px;">
+    <button onclick="location.href='albums.html'"
+style="padding: 12px 30px; font-size: 1.1rem; background: #6c757d; color: white; border: none; border-radius: 30px; cursor: pointer;">
+  ← Back to Albums
+</button>
+  </div>
+</section>
+  <!-- End of Albums Section -->
+
+  <!-- Footer -->
+<footer class="footer">
+
+  <!-- LEFT : SOCIAL -->
+  <div class="footer-left">
+    <a href="https://www.youtube.com/@triplescosmos" target="_blank"><img src="images/youtube-icon-lg.png"></a>
+    <a href="https://www.instagram.com/triplescosmos/" target="_blank"><img src="images/instagram.avif"></a>
+    <a href="https://x.com/triplescosmos" target="_blank"><img src="images/x-logo-icon.avif"></a>
+    <a href="https://www.facebook.com/triplescosmos.archive" target="_blank"><img src="images/facebook-app-icon.avif"></a>
+    <a href="https://discord.gg/triplescosmos" target="_blank"><img src="images/discord.png"></a>
+  </div>
+
+
+  <!-- CENTER -->
+  <div class="footer-center">
+    <p>© 2026 tripleS | Inspired by Kpop Wiki</p>
+
+    <div class="footer-links">
+      <a href="https://shop.cosmo.fans/" target="_blank">Cosmo Web Shop</a>
+      <a href="https://www.triplescosmos.com/" target="_blank">tripleS Website</a>
+      <a href="https://www.mod-haus.com/" target="_blank">Modhaus Website</a>
+    </div>
+  </div>
+
+
+  <!-- RIGHT -->
+  <div class="footer-right">
+
+  <a class="cosmo-logo">
+    <img src="images/Cosmo_app_logo.webp">
+  </a>
+
+<div class="store-icons">
+    <a href="https://play.google.com/store/apps/details?id=com.modhaus.cosmo"><img src="images/google-play.webp"></a>
+    <a href="https://apps.apple.com/kr/app/cosmo-the-origin/id1617337069"><img src="images/apple-app-store.jpg"></a>
+  </div>
+
+</div>
+
+</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

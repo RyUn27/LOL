@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/webp" href="images/tripleS_icon.webp">
+  <title>tripleS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+      <div class="nav-left">
+        <a href="index.html">
+          <img src="images/tripleS_logo.png" alt="tripleS logo">
+        </a>
+      </div>
+      <ul class="nav-center">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="members.html">Members</a></li>
+        <li><a href="albums.html">Albums</a></li>
+        <li><a href="game.html">Game</a></li>
+        <li><a href="overview.html">Overview</a></li>
+      <li id="shopNav" style="display:none;">
+          <a href="shop.html">Shop</a>
+      </li>
+      </ul>
+
+      <div class="nav-right">
+        <a href="cart.html" id="cartIcon" class="cart-icon" style="display:none;">
+          🛒
+        </a>
+  <a href="login.html" id="loginBtn" class="signin-btn">Sign in/up</a>
+
+  <div class="nav-profile" id="profileMenu" style="display: none;">
+    <img src="images/Profile_avatar.png" class="profile-img" alt="Profile" onclick="toggleDropdown()">
+    <div class="dropdown" id="dropdown">
+
+  <p class="dropdown-user" id="dropdownUsername"></p>
+
+  <!-- ⭐ ADMIN BUTTON -->
+  <a href="admin.html" id="adminLink" style="display:none;">Admin Dashboard</a>
+<!-- My Orders -->
+      <a href="order.html" id="myOrdersLink">My Orders</a>
+
+      <!-- Checkout (disabled if cart empty) -->
+      <a href="checkout.html" id="checkoutLink">Checkout</a>
+  <a href="#" onclick="logout()">Logout</a>
+
+</div>
+  </div>
+</div>
+    </nav>
+  </header>
+
+  <div class="breadcrumb">
+    <a href="index.html">Home</a>
+    <span>/</span>
+    <span class="current">Game</span>
+  </div>
+
+  <!-- Game Section -->
+  <section id="game" style="padding: 30px 15px; max-width: 900px; margin: 0 auto; text-align: center; min-height: 80vh;">
+    <h1 style="color: #ffffff; margin-bottom: 20px;">tripleS Member Guessing Quiz</h1>
+    <p style="font-size: 1.2rem; margin-bottom: 25px; max-width: 700px; margin-left: auto; margin-right: auto;">
+      Guess the Members
+    </p>
+    
+    <button id="start-quiz">Start</button>
+    
+    <div id="quiz-stats" style="display: none; justify-content: center; gap: 40px; margin: 25px 0; font-weight: bold; font-size: 1.1rem; color: #ddd; flex-wrap: wrap;">
+      <div>Question <span id="current-question">–</span> / 24</div>
+      <div>Score: <span id="score">–</span></div>
+      <div>Time left: <span id="timer" style="color: #e67e22;">–:–</span></div>
+    </div>
+
+    <!-- Centered image container -->
+    <div style="display: flex; justify-content: center; margin: 25px 0;">
+      <img id="member-image" src="images/tripleS_group.jpg" alt="tripleS members" style="max-width:100%; height:auto;">
+    </div>
+
+    <!-- Centered input – hidden at first -->
+    <div style="display: flex; justify-content: center; margin: 25px 0;">
+      <input type="text" id="answer-input" placeholder="Type stage name here..." autocomplete="off"
+             style="display: none; width: 100%; max-width: 550px; padding: 16px; font-size: 1.4rem; border: 2px solid #444; border-radius: 12px; background: #111; color: white; text-align: center;">
+    </div>
+
+    <div style="margin: 20px 0;">
+      <button type="button" id="submit-answer" class="action-btn" style="display: none; padding:14px 40px; font-size:1.3rem; background:#111; color:white; border:none; border-radius:30px; cursor:pointer; margin:0 10px;">
+        Submit
+      </button>
+
+      <button id="skip-question" class="action-btn" style="display: none; padding: 14px 40px; font-size: 1.3rem; background: #444; color: #ccc; border: none; border-radius: 30px; cursor: pointer; margin: 0 10px;">
+        Skip
+      </button>
+
+      <button id="hint-question" class="action-btn" style="display: none; padding: 14px 40px; font-size: 1.3rem; background: #6c757d; color: white; border: none; border-radius: 30px; cursor: pointer; margin: 0 10px;">
+        Hint
+      </button>
+    </div>
+    <div id="feedback" style="min-height: 60px; font-size: 1.5rem; font-weight: bold; margin: 25px 0; color: #fff;"></div>
+  </section>
+
+<footer class="footer">
+
+  <!-- LEFT : SOCIAL -->
+  <div class="footer-left">
+    <a href="https://www.youtube.com/@triplescosmos" target="_blank"><img src="images/youtube-icon-lg.png"></a>
+    <a href="https://www.instagram.com/triplescosmos/" target="_blank"><img src="images/instagram.avif"></a>
+    <a href="https://x.com/triplescosmos" target="_blank"><img src="images/x-logo-icon.avif"></a>
+    <a href="https://www.facebook.com/triplescosmos.archive" target="_blank"><img src="images/facebook-app-icon.avif"></a>
+    <a href="https://discord.gg/triplescosmos" target="_blank"><img src="images/discord.png"></a>
+  </div>
+
+
+  <!-- CENTER -->
+  <div class="footer-center">
+    <p>© 2026 tripleS | Inspired by Kpop Wiki</p>
+
+    <div class="footer-links">
+      <a href="https://shop.cosmo.fans/" target="_blank">Cosmo Web Shop</a>
+      <a href="https://www.triplescosmos.com/" target="_blank">tripleS Website</a>
+      <a href="https://www.mod-haus.com/" target="_blank">Modhaus Website</a>
+    </div>
+  </div>
+
+
+  <!-- RIGHT -->
+  <div class="footer-right">
+
+  <a class="cosmo-logo">
+    <img src="images/Cosmo_app_logo.webp">
+  </a>
+
+<div class="store-icons">
+    <a href="https://play.google.com/store/apps/details?id=com.modhaus.cosmo"><img src="images/google-play.webp"></a>
+    <a href="https://apps.apple.com/kr/app/cosmo-the-origin/id1617337069"><img src="images/apple-app-store.jpg"></a>
+  </div>
+
+</div>
+
+</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

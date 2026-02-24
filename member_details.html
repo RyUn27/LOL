@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/webp" href="images/tripleS_icon.webp">
+  <title>tripleS</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+    <div class="nav-left">
+      <a href="index.html">
+        <img src="images/tripleS_logo.png" alt="tripleS logo">
+      </a>
+    </div>
+
+    <ul class="nav-center">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="members.html">Members</a></li>
+      <li><a href="albums.html">Albums</a></li>
+      <li><a href="game.html">Game</a></li>
+      <li><a href="overview.html">Overview</a></li>
+      <li id="shopNav" style="display:none;">
+        <a href="shop.html">Shop</a>
+    </li>
+    </ul>
+
+    <div class="nav-right">
+      <!-- 🛒 CART ICON -->
+<a href="cart.html" id="cartIcon" class="cart-icon" style="display:none;">
+  🛒
+</a>
+  <a href="login.html" id="loginBtn" class="signin-btn">Sign in/up</a>
+
+  <div class="nav-profile" id="profileMenu" style="display: none;">
+    <img src="images/Profile_avatar.png" class="profile-img" alt="Profile" onclick="toggleDropdown()">
+    <div class="dropdown" id="dropdown">
+
+  <p class="dropdown-user" id="dropdownUsername"></p>
+
+  <!-- ⭐ ADMIN BUTTON -->
+  <a href="admin.html" id="adminLink" style="display:none;">Admin Dashboard</a>
+<!-- My Orders -->
+      <a href="order.html" id="myOrdersLink">My Orders</a>
+
+      <!-- Checkout (disabled if cart empty) -->
+      <a href="checkout.html" id="checkoutLink">Checkout</a>
+  <a href="#" onclick="logout()">Logout</a>
+
+</div>
+  </div>
+</div>
+  </nav>
+
+  </header>
+
+  <div class="breadcrumb">
+    <a href="index.html">Home</a>
+    <span> / </span>
+    <a href="members.html">Members</a>
+    <span> / </span>
+    <span class="current" id="member-breadcrumb">Member</span>
+  </div>
+
+  <section id="seoyeon" class="member-detail">
+  <div class="detail-container">
+    <div class="detail-left">
+      <img src="images/SeoYeon.webp" alt="SeoYeon">
+    </div>
+    <div class="detail-right">
+      <h2>S1 SeoYeon</h2>
+      <table class="profile-table">
+        <tr><td>Full Name</td><td>Yoon SeoYeon (윤서연)</td></tr>
+        <tr><td>Birthday</td><td>August 6, 2003</td></tr>
+        <tr><td>Nationality</td><td>Korean 🇰🇷</td></tr>
+        <tr><td>Height</td><td>161 cm</td></tr>
+        <tr><td>Blood Type</td><td>B</td></tr>
+        <tr><td>MBTI</td><td>ISFP</td></tr>
+        <tr><td>S Number</td><td>S1</td></tr>
+        <tr><td>Position</td><td>Leader, Vocalist</td></tr>
+      </table>
+      <button onclick="location.href='members.html'">⬅ Back to Members</button>
+    </div>
+  </div>
+</section>
+
+<!-- S2 HyeRin -->
+<section id="hyerin" class="member-detail" style="display:none;">
+  <div class="detail-container">
+    <div class="detail-left">
+      <img src="images/HyeRin.webp" alt="HyeRin">
+    </div>
+    <div class="detail-right">
+      <h2>S2 HyeRin</h2>
+      <table class="profile-table">
+        <tr><td>Full Name</td><td>Jeong HyeRin (정혜린)</td></tr>
+        <tr><td>Birthday</td><td>April 12, 2007</td></tr>
+        <tr><td>Nationality</td><td>Korean 🇰🇷</td></tr>
+        <tr><td>Height</td><td>162 cm</td></tr>
+        <tr><td>Blood Type</td><td>B</td></tr>
+        <tr><td>MBTI</td><td>ESTP / ESTJ</td></tr>
+        <tr><td>S Number</td><td>S2</td></tr>
+        <tr><td>Position</td><td>Leader, Main Dancer</td></tr>
+      </table>
+      <button onclick="location.href='members.html'">⬅ Back to Members</button>
+    </div>
+  </div>
+</section>
+
+<!-- S3 JiWoo -->
+<section id="jiwoo" class="member-detail" style="display:none;">
+  <div class="detail-container">
+    <div class="detail-left">
+      <img src="images/JiWoo.webp" alt="JiWoo">
+    </div>
+    <div class="detail-right">
+      <h2>S3 JiWoo</h2>
+      <table class="profile-table">
+        <tr><td>Full Name</td><td>Lee JiWoo (이지우)</td></tr>
+        <tr><td>Birthday</td><td>October 24, 2005</td></tr>
+        <tr><td>Nationality</td><td>Korean 🇰🇷</td></tr>
+        <tr><td>Height</td><td>172 cm</td></tr>
+        <tr><td>Blood Type</td><td>AB</td></tr>
+        <tr><td>MBTI</td><td>ENFP</td></tr>
+        <tr><td>S Number</td><td>S3</td></tr>
+        <tr><td>Position</td><td>Main Vocalist, Dancer</td></tr>
+      </table>
+      <button onclick="location.href='members.html'">⬅ Back to Members</button>
+    </div>
+  </div>
+</section>
+
+<!-- S4 ChaeYeon -->
+<section id="chaeyeon" class="member-detail" style="display:none;">
+  <div class="detail-container">
+    <div class="detail-left">
+      <img src="images/ChaeYeon.webp" alt="ChaeYeon">
+    </div>
+    <div class="detail-right">
+      <h2>S4 ChaeYeon</h2>
+      <table class="profile-table">
+        <tr><td>Full Name</td><td>Kim ChaeYeon (김채연)</td></tr>
+        <tr><td>Birthday</td><td>December 4, 2004</td></tr>
+        <tr><td>Nationality</td><td>Korean 🇰🇷</td></tr>
+        <tr><td>Height</td><td>170 cm</td></tr>
+        <tr><td>Blood Type</td><td>B</td></tr>
+        <tr><td>MBTI</td><td>INTP</td></tr>
+        <tr><td>S Number</td><td>S4</td></tr>
+        <tr><td>Position</td><td>Main Dancer, Vocalist</td></tr>
+      </table>
+      <button onclick="location.href='members.html'">⬅ Back to Members</button>
+    </div>
+  </div>
+</section>
+
+<!-- S5 YooYeon -->
+<section id="yooyeon" class="member-detail" style="display:none;">
+  <div class="detail-container">
+    <div class="detail-left">
+      <img src="images/YooYeon.webp" alt="YooYeon">
+    </div>
+    <div class="detail-right">
+      <h2>S5 YooYeon</h2>
+      <table class="profile-table">
+        <tr><td>Full Name</td><td>Kim YooYeon (김유연)</td></tr>
+        <tr><td>Birthday</td><td>February 9, 2001</td></tr>
+        <tr><td>Nationality</td><td>Korean 🇰🇷</td></tr>
+        <tr><td>Height</td><td>165 cm</td></tr>
+        <tr><td>Blood Type</td><td>B</td></tr>
+        <tr><td>MBTI</td><td>INTP</td></tr>
+        <tr><td>S Number</td><td>S5</td></tr>
+        <tr><td>Position</td><td>Visual, Vocalist, Center, Eldest</td></tr>
+      </table>
+      <button onclick="location.href='members.html'">⬅ Back to Members</button>
+    </div>
+  </div>
+</section>
+
+<!-- S6 SooMin -->
+<section id="soomin" class="member-detail" style="display:none;">
+  <div class="detail-container">
+    <div class="detail-left">
+      <img src="images/SooMin.webp" alt="SooMin">
+    </div>
+    <div class="detail-right">
+      <h2>S6 SooMin</h2>
+      <table class="profile-table">
+        <tr><td>Full Name</td><td>Kim SooMin (김수민)</td></tr>
+        <tr><td>Birthday</td><td>October 3, 2007</td></tr>
+        <tr><td>Nationality</td><td>Korean 🇰🇷</td></tr>
+        <tr><td>Height</td><td>160 cm</td></tr>
+        <tr><td>Blood Type</td><td>AB</td></tr>
+        <tr><td>MBTI</td><td>ENTP</td></tr>
+        <tr><td>S Number</td><td>S6</td></tr>
+        <tr><td>Position</td><td>Vocalist</td></tr>
+      </table>
+      <button onclick="location.href='members.html'">⬅ Back to Members</button>
+    </div>
+  </div>
+</section>
+
+<!-- S7 NaKyoung -->
+<section id="nakyoung" class="member-detail" style="display:none;">
+  <div class="detail-container">
+    <div class="detail-left">
+      <img src="images/Nakyoung.webp" alt="Nakyoung">
+    </div>
+    <div class="detail-right">
+      <h2>S7 NaKyoung</h2>
+      <table class="profile-table">
+        <tr><td>Full Name</td><td>Kim NaKyoung (김나경)</td></tr>
+        <tr><td>Birthday</td><td>October 13, 2002</td></tr>
+        <tr><td>Nationality</td><td>Korean 🇰🇷</td></tr>
+        <tr><td>Height</td><td>166 cm</td></tr>
+        <tr><td>Blood Type</td><td>O</td></tr>
+        <tr><td>MBTI</td><td>ENFP</td></tr>
+        <tr><td>S Number</td><td>S7</td></tr>
+        <tr><td>Position</td><td>Main Dancer, Lead Rapper, Sub-Vocalist</td></tr>
+      </table>
+      <button onclick="location.href='members.html'">⬅ Back to Members</button>
+    </div>
+  </div>
+</section>
+
+<!-- S8 YuBin -->
+<section id="yubin" class="member-detail" style="display:none;">
+  <div class="detail-container">
+    <div class="detail-left">
+      <img src="images/Yubin.webp" alt="Yubin">
+    </div>
+    <div class="detail-right">
+      <h2>S8 YuBin</h2>
+      <table class="profile-table">
+        <tr><td>Full Name</td><td>Gong YuBin (공유빈)</td></tr>
+        <tr><td>Birthday</td><td>February 16, 2007</td></tr>
+        <tr><td>Nationality</td><td>Korean 🇰🇷</td></tr>
+        <tr><td>Height</td><td>164 cm</td></tr>
+        <tr><td>Blood Type</td><td>B</td></tr>
+        <tr><td>MBTI</td><td>INFP</td></tr>
+        <tr><td>S Number</td><td>S8</td></tr>
+        <tr><td>Position</td><td>Vocalist, Main Dancer</td></tr>
+      </table>
+      <button onclick="location.href='members.html'">⬅ Back to Members</button>
+    </div>
+  </div>
+</section>
+
+<!-- S9 Kaede -->
+<section id="kaede" class="member-detail" style="display:none;">
+  <div class="detail-container">
+    <div class="detail-left">
+      <img src="images/Kaede.webp" alt="Kaede">
+    </div>
+    <div class="detail-right">
+      <h2>S9 Kaede</h2>
+      <table class="profile-table">
+        <tr><td>Full Name</td><td>Kaede (かえで)</td></tr>
+        <tr><td>Birthday</td><td>December 20, 2005</td></tr>
+        <tr><td>Nationality</td><td>Japanese 🇯🇵</td></tr>
+        <tr><td>Height</td><td>163 cm</td></tr>
+        <tr><td>Blood Type</td><td>N/A</td></tr>
+        <tr><td>MBTI</td><td>ISFP</td></tr>
+        <tr><td>S Number</td><td>S9</td></tr>
+        <tr><td>Position</td><td>Main Dancer, Lead Vocalist</td></tr>
+      </table>
+      <button onclick="location.href='members.html'">⬅ Back to Members</button>
+    </div>
+  </div>
+</section>
+
+<!-- S10 DaHyun -->
+<section id="dahyun" class="member-detail" style="display:none;">
+  <div class="detail-container">
+    <div class="detail-left">
+      <img src="images/DaHyun.webp" alt="DaHyun">
+    </div>
+    <div class="detail-right">
+      <h2>S10 DaHyun</h2>
+      <table class="profile-table">
+        <tr><td>Full Name</td><td>Seo DaHyun (서다현)</td></tr>
+        <tr><td>Birthday</td><td>January 8, 2003</td></tr>
+        <tr><td>Nationality</td><td>Korean 🇰🇷</td></tr>
+        <tr><td>Height</td><td>162 cm</td></tr>
+        <tr><td>Blood Type</td><td>A</td></tr>
+        <tr><td>MBTI</td><td>ISFP</td></tr>
+        <tr><td>S Number</td><td>S10</td></tr>
+        <tr><td>Position</td><td>Main Vocalist</td></tr>
+      </table>
+      <button onclick="location.href='members.html'">⬅ Back to Members</button>
+    </div>
+  </div>
+</section>
+
+<!-- S11 Kotone -->
+<section id="kotone" class="member-detail" style="display:none;">
+  <div class="detail-container">
+    <div class="detail-left">
+      <img src="images/Kotone.webp" alt="Kotone">
+    </div>
+    <div class="detail-right">
+      <h2>S11 Kotone</h2>
+      <table class="profile-table">
+        <tr><td>Full Name</td><td>Kotone (琴音)</td></tr>
+        <tr><td>Birthday</td><td>March 10, 2004</td></tr>
+        <tr><td>Nationality</td><td>Japanese 🇯🇵</td></tr>
+        <tr><td>Height</td><td>160 cm</td></tr>
+        <tr><td>Blood Type</td><td>A</td></tr>
+        <tr><td>MBTI</td><td>ISFP</td></tr>
+        <tr><td>S Number</td><td>S11</td></tr>
+        <tr><td>Position</td><td>Main Rapper, Main Dancer</td></tr>
+      </table>
+      <button onclick="location.href='members.html'">⬅ Back to Members</button>
+    </div>
+  </div>
+</section>
+
+<!-- S12 YeonJi -->
+<section id="yeonji" class="member-detail" style="display:none;">
+  <div class="detail-container">
+    <div class="detail-left">
+      <img src="images/Yeonji.webp" alt="YeonJi">
+    </div>
+    <div class="detail-right">
+      <h2>S12 YeonJi</h2>
+      <table class="profile-table">
+        <tr><td>Full Name</td><td>Kwak YeonJi (곽연지)</td></tr>
+        <tr><td>Birthday</td><td>January 8, 2008</td></tr>
+        <tr><td>Nationality</td><td>Korean 🇰🇷</td></tr>
+        <tr><td>Height</td><td>163 cm</td></tr>
+        <tr><td>Blood Type</td><td>B</td></tr>
+        <tr><td>MBTI</td><td>ISFP</td></tr>
+        <tr><td>S Number</td><td>S12</td></tr>
+        <tr><td>Position</td><td>Lead Dancer, Sub-Vocalist</td></tr>
+      </table>
+      <button onclick="location.href='members.html'">⬅ Back to Members</button>
+    </div>
+  </div>
+</section>
+
+<!-- S13 Nien -->
+<section id="nien" class="member-detail" style="display:none;">
+  <div class="detail-container">
+    <div class="detail-left">
+      <img src="images/Nien.webp" alt="Nien">
+    </div>
+    <div class="detail-right">
+      <h2>S13 Nien</h2>
+      <table class="profile-table">
+        <tr><td>Full Name</td><td>Nien (니엔)</td></tr>
+        <tr><td>Birthday</td><td>June 2, 2003</td></tr>
+        <tr><td>Nationality</td><td>Taiwanese 🇹🇼</td></tr>
+        <tr><td>Height</td><td>162 cm</td></tr>
+        <tr><td>Blood Type</td><td>O</td></tr>
+        <tr><td>MBTI</td><td>ENFP</td></tr>
+        <tr><td>S Number</td><td>S13</td></tr>
+        <tr><td>Position</td><td>Lead Rapper, Sub-Vocalist</td></tr>
+      </table>
+      <button onclick="location.href='members.html'">⬅ Back to Members</button>
+    </div>
+  </div>
+</section>
+
+<!-- S14 SoHyun -->
+<section id="sohyun" class="member-detail" style="display:none;">
+  <div class="detail-container">
+    <div class="detail-left">
+      <img src="images/SoHyun.webp" alt="SoHyun">
+    </div>
+    <div class="detail-right">
+      <h2>S14 SoHyun</h2>
+      <table class="profile-table">
+        <tr><td>Full Name</td><td>Park SoHyun (박소현)</td></tr>
+        <tr><td>Birthday</td><td>October 13, 2002</td></tr>
+        <tr><td>Nationality</td><td>Korean 🇰🇷</td></tr>
+        <tr><td>Height</td><td>165 cm</td></tr>
+        <tr><td>Blood Type</td><td>B</td></tr>
+        <tr><td>MBTI</td><td>INFP</td></tr>
+        <tr><td>S Number</td><td>S14</td></tr>
+        <tr><td>Position</td><td>Producer, Lead Vocalist</td></tr>
+      </table>
+      <button onclick="location.href='members.html'">⬅ Back to Members</button>
+    </div>
+  </div>
+</section>
+
+<!-- S15 Xinyu -->
+<section id="xinyu" class="member-detail" style="display:none;">
+  <div class="detail-container">
+    <div class="detail-left">
+      <img src="images/Xinyu.webp" alt="Xinyu">
+    </div>
+    <div class="detail-right">
+      <h2>S15 Xinyu</h2>
+      <table class="profile-table">
+        <tr><td>Full Name</td><td>Xinyu (신위)</td></tr>
+        <tr><td>Birthday</td><td>May 25, 2002</td></tr>
+        <tr><td>Nationality</td><td>Chinese 🇨🇳</td></tr>
+        <tr><td>Height</td><td>170 cm</td></tr>
+        <tr><td>Blood Type</td><td>O</td></tr>
+        <tr><td>MBTI</td><td>ENTP</td></tr>
+        <tr><td>S Number</td><td>S15</td></tr>
+        <tr><td>Position</td><td>Sub-Vocalist</td></tr>
+      </table>
+      <button onclick="location.href='members.html'">⬅ Back to Members</button>
+    </div>
+  </div>
+</section>
+
+<!-- S16 Mayu -->
+<section id="mayu" class="member-detail" style="display:none;">
+  <div class="detail-container">
+    <div class="detail-left">
+      <img src="images/Mayu.webp" alt="Mayu">
+    </div>
+    <div class="detail-right">
+      <h2>S16 Mayu</h2>
+      <table class="profile-table">
+        <tr><td>Full Name</td><td>Mayu (마유)</td></tr>
+        <tr><td>Birthday</td><td>May 12, 2002</td></tr>
+        <tr><td>Nationality</td><td>Japanese 🇯🇵</td></tr>
+        <tr><td>Height</td><td>160 cm</td></tr>
+        <tr><td>Blood Type</td><td>A</td></tr>
+        <tr><td>MBTI</td><td>ISFP</td></tr>
+        <tr><td>S Number</td><td>S16</td></tr>
+        <tr><td>Position</td><td>Lead Vocalist</td></tr>
+      </table>
+      <button onclick="location.href='members.html'">⬅ Back to Members</button>
+    </div>
+  </div>
+</section>
+
+<!-- S17 Lynn -->
+<section id="lynn" class="member-detail" style="display:none;">
+  <div class="detail-container">
+    <div class="detail-left">
+      <img src="images/Lynn.webp" alt="Lynn">
+    </div>
+    <div class="detail-right">
+      <h2>S17 Lynn</h2>
+      <table class="profile-table">
+        <tr><td>Full Name</td><td>Lynn (린)</td></tr>
+        <tr><td>Birthday</td><td>April 12, 2006</td></tr>
+        <tr><td>Nationality</td><td>Japanese 🇯🇵</td></tr>
+        <tr><td>Height</td><td>162 cm</td></tr>
+        <tr><td>Blood Type</td><td>B</td></tr>
+        <tr><td>MBTI</td><td>INFP</td></tr>
+        <tr><td>S Number</td><td>S17</td></tr>
+        <tr><td>Position</td><td>Main Dancer, Sub-Rapper</td></tr>
+      </table>
+      <button onclick="location.href='members.html'">⬅ Back to Members</button>
+    </div>
+  </div>
+</section>
+
+<!-- S18 JooBin -->
+<section id="joobin" class="member-detail" style="display:none;">
+  <div class="detail-container">
+    <div class="detail-left">
+      <img src="images/JooBin.webp" alt="JooBin">
+    </div>
+    <div class="detail-right">
+      <h2>S18 JooBin</h2>
+      <table class="profile-table">
+        <tr><td>Full Name</td><td>JooBin (주빈)</td></tr>
+        <tr><td>Birthday</td><td>January 16, 2009</td></tr>
+        <tr><td>Nationality</td><td>Korean 🇰🇷</td></tr>
+        <tr><td>Height</td><td>163 cm</td></tr>
+        <tr><td>Blood Type</td><td>O</td></tr>
+        <tr><td>MBTI</td><td>ENFP</td></tr>
+        <tr><td>S Number</td><td>S18</td></tr>
+        <tr><td>Position</td><td>Visual, Sub-Vocalist</td></tr>
+      </table>
+      <button onclick="location.href='members.html'">⬅ Back to Members</button>
+    </div>
+  </div>
+</section>
+
+<!-- S19 HaYeon -->
+<section id="hayeon" class="member-detail" style="display:none;">
+  <div class="detail-container">
+    <div class="detail-left">
+      <img src="images/HaYeon.webp" alt="HaYeon">
+    </div>
+    <div class="detail-right">
+      <h2>S19 HaYeon</h2>
+      <table class="profile-table">
+        <tr><td>Full Name</td><td>Jeong HaYeon (정하연)</td></tr>
+        <tr><td>Birthday</td><td>August 1, 2007</td></tr>
+        <tr><td>Nationality</td><td>Korean 🇰🇷</td></tr>
+        <tr><td>Height</td><td>162 cm</td></tr>
+        <tr><td>Blood Type</td><td>B</td></tr>
+        <tr><td>MBTI</td><td>ISFP</td></tr>
+        <tr><td>S Number</td><td>S19</td></tr>
+        <tr><td>Position</td><td>Sub-Vocalist, Lead Dancer</td></tr>
+      </table>
+      <button onclick="location.href='members.html'">⬅ Back to Members</button>
+    </div>
+  </div>
+</section>
+
+<!-- S20 ShiOn -->
+<section id="shion" class="member-detail" style="display:none;">
+  <div class="detail-container">
+    <div class="detail-left">
+      <img src="images/ShiOn.webp" alt="ShiOn">
+    </div>
+    <div class="detail-right">
+      <h2>S20 ShiOn</h2>
+      <table class="profile-table">
+        <tr><td>Full Name</td><td>Park ShiOn (박시온)</td></tr>
+        <tr><td>Birthday</td><td>April 3, 2006</td></tr>
+        <tr><td>Nationality</td><td>Korean 🇰🇷</td></tr>
+        <tr><td>Height</td><td>165 cm</td></tr>
+        <tr><td>Blood Type</td><td>A</td></tr>
+        <tr><td>MBTI</td><td>ENFP</td></tr>
+        <tr><td>S Number</td><td>S20</td></tr>
+        <tr><td>Position</td><td>Main Vocalist</td></tr>
+      </table>
+      <button onclick="location.href='members.html'">⬅ Back to Members</button>
+    </div>
+  </div>
+</section>
+
+<!-- S21 ChaeWon -->
+<section id="chaewon" class="member-detail" style="display:none;">
+  <div class="detail-container">
+    <div class="detail-left">
+      <img src="images/ChaeWon.webp" alt="ChaeWon">
+    </div>
+    <div class="detail-right">
+      <h2>S21 ChaeWon</h2>
+      <table class="profile-table">
+        <tr><td>Full Name</td><td>Kim ChaeWon (김채원)</td></tr>
+        <tr><td>Birthday</td><td>May 2, 2007</td></tr>
+        <tr><td>Nationality</td><td>Korean 🇰🇷</td></tr>
+        <tr><td>Height</td><td>162 cm</td></tr>
+        <tr><td>Blood Type</td><td>O</td></tr>
+        <tr><td>MBTI</td><td>ISFP</td></tr>
+        <tr><td>S Number</td><td>S21</td></tr>
+        <tr><td>Position</td><td>Sub-Vocalist</td></tr>
+      </table>
+      <button onclick="location.href='members.html'">⬅ Back to Members</button>
+    </div>
+  </div>
+</section>
+
+<!-- S22 Sullin -->
+<section id="sullin" class="member-detail" style="display:none;">
+  <div class="detail-container">
+    <div class="detail-left">
+      <img src="images/Sullin.webp" alt="Sullin">
+    </div>
+    <div class="detail-right">
+      <h2>S22 Sullin</h2>
+      <table class="profile-table">
+        <tr><td>Full Name</td><td>Sullin (설린)</td></tr>
+        <tr><td>Birthday</td><td>November 30, 2006</td></tr>
+        <tr><td>Nationality</td><td>Thai 🇹🇭</td></tr>
+        <tr><td>Height</td><td>160 cm</td></tr>
+        <tr><td>Blood Type</td><td>B</td></tr>
+        <tr><td>MBTI</td><td>ENFP</td></tr>
+        <tr><td>S Number</td><td>S22</td></tr>
+        <tr><td>Position</td><td>Sub-Vocalist</td></tr>
+      </table>
+      <button onclick="location.href='members.html'">⬅ Back to Members</button>
+    </div>
+  </div>
+</section>
+
+<!-- S23 SeoAh -->
+<section id="seoah" class="member-detail" style="display:none;">
+  <div class="detail-container">
+    <div class="detail-left">
+      <img src="images/SeoAh.webp" alt="SeoAh">
+    </div>
+    <div class="detail-right">
+      <h2>S23 SeoAh</h2>
+      <table class="profile-table">
+        <tr><td>Full Name</td><td>SeoAh (서아)</td></tr>
+        <tr><td>Birthday</td><td>June 11, 2010</td></tr>
+        <tr><td>Nationality</td><td>Korean 🇰🇷</td></tr>
+        <tr><td>Height</td><td>156 cm</td></tr>
+        <tr><td>Blood Type</td><td>O</td></tr>
+        <tr><td>MBTI</td><td>INTP</td></tr>
+        <tr><td>S Number</td><td>S23</td></tr>
+        <tr><td>Position</td><td>Maknae, Sub-Vocalist</td></tr>
+      </table>
+      <button onclick="location.href='members.html'">⬅ Back to Members</button>
+    </div>
+  </div>
+</section>
+
+<!-- S24 JiYeon -->
+<section id="jiyeon" class="member-detail" style="display:none;">
+  <div class="detail-container">
+    <div class="detail-left">
+      <img src="images/JiYeon.webp" alt="JiYeon">
+    </div>
+    <div class="detail-right">
+      <h2>S24 JiYeon</h2>
+      <table class="profile-table">
+        <tr><td>Full Name</td><td>JiYeon (지연)</td></tr>
+        <tr><td>Birthday</td><td>February 13, 2004</td></tr>
+        <tr><td>Nationality</td><td>Korean 🇰🇷</td></tr>
+        <tr><td>Height</td><td>165 cm</td></tr>
+        <tr><td>Blood Type</td><td>A</td></tr>
+        <tr><td>MBTI</td><td>ENFP</td></tr>
+        <tr><td>S Number</td><td>S24</td></tr>
+        <tr><td>Position</td><td>Lead Dancer, Sub-Vocalist</td></tr>
+      </table>
+      
+    </div>
+  </div>
+</section>
+
+
+  <!-- Footer -->
+<footer class="footer">
+
+  <!-- LEFT : SOCIAL -->
+  <div class="footer-left">
+    <a href="https://www.youtube.com/@triplescosmos" target="_blank"><img src="images/youtube-icon-lg.png"></a>
+    <a href="https://www.instagram.com/triplescosmos/" target="_blank"><img src="images/instagram.avif"></a>
+    <a href="https://x.com/triplescosmos" target="_blank"><img src="images/x-logo-icon.avif"></a>
+    <a href="https://www.facebook.com/triplescosmos.archive" target="_blank"><img src="images/facebook-app-icon.avif"></a>
+    <a href="https://discord.gg/triplescosmos" target="_blank"><img src="images/discord.png"></a>
+  </div>
+
+
+  <!-- CENTER -->
+  <div class="footer-center">
+    <p>© 2026 tripleS | Inspired by Kpop Wiki</p>
+
+    <div class="footer-links">
+      <a href="https://shop.cosmo.fans/" target="_blank">Cosmo Web Shop</a>
+      <a href="https://www.triplescosmos.com/" target="_blank">tripleS Website</a>
+      <a href="https://www.mod-haus.com/" target="_blank">Modhaus Website</a>
+    </div>
+  </div>
+
+
+  <!-- RIGHT -->
+  <div class="footer-right">
+
+  <a class="cosmo-logo">
+    <img src="images/Cosmo_app_logo.webp">
+  </a>
+
+<div class="store-icons">
+    <a href="https://play.google.com/store/apps/details?id=com.modhaus.cosmo"><img src="images/google-play.webp"></a>
+    <a href="https://apps.apple.com/kr/app/cosmo-the-origin/id1617337069"><img src="images/apple-app-store.jpg"></a>
+  </div>
+
+</div>
+
+</footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
