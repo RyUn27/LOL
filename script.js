@@ -98,6 +98,39 @@ function updateNavStatus() {
 document.addEventListener("DOMContentLoaded", updateNavStatus);
 window.addEventListener("focus", updateNavStatus);
 
+// ─────────────────────────────────────────
+// Hamburger toggle for small screens
+// ─────────────────────────────────────────
+document.addEventListener("DOMContentLoaded", () => {
+  const hambs = document.querySelectorAll('.hamburger');
+  const navCenter = document.querySelector('.nav-center');
+
+  if (!navCenter || !hambs.length) return;
+
+  hambs.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const isOpen = navCenter.classList.toggle('open');
+      btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  });
+
+  // Close menu when clicking a nav link (mobile)
+  navCenter.addEventListener('click', (e) => {
+    if (e.target.tagName === 'A' && navCenter.classList.contains('open')) {
+      navCenter.classList.remove('open');
+      hambs.forEach(b => b.setAttribute('aria-expanded', 'false'));
+    }
+  });
+
+  // Ensure menu resets on resize to desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768) {
+      navCenter.classList.remove('open');
+      hambs.forEach(b => b.setAttribute('aria-expanded', 'false'));
+    }
+  });
+});
+
 function toggleDropdown() {
   const dropdown = document.getElementById("dropdown");
   if (dropdown) dropdown.classList.toggle("show");
